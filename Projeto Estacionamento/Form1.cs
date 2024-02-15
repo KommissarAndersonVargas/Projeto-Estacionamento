@@ -57,7 +57,7 @@ namespace Projeto_Estacionamento
                 string data = DateTimePicker1.Text; // Vem do pequeno calendario datetime picker
                
 
-                d = new DateTime( TimeNow.Year, TimeNow.Month, TimeNow.Day, hora1, min1, TimeNow.Second);
+                d = new DateTime( TimeNow.Year, TimeNow.Month, TimeNow.Day, hora1, min1, 0);
                 DateTime HoraEntrada = d;
 
                 car = new Infocar(placa, HoraEntrada, data, "ainda não calculado");
@@ -105,7 +105,7 @@ namespace Projeto_Estacionamento
                     {
                         hora2 = int.Parse(textBox3.Text);
                         min2 = int.Parse(textBox4.Text);
-                        c = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora2, min2, TimeNow.Second);
+                        c = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora2, min2, 0);
                         //t = c.Subtract(d);
                         t = c.Subtract(list2[i].Time);
 
@@ -603,53 +603,63 @@ namespace Projeto_Estacionamento
             return dataGridView1;
         }
 
-        private void button7_Click_1(object sender, EventArgs e)
-        {
-            /*
-            var bindingList = new BindingList<Infocar>(list2);
-            var source = new BindingSource(bindingList, null);
-            dataGridView1.DataSource = source;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    dataGridView1.Rows.RemoveAt(row.Index);
-                }
-            }
-            
-            */
-            foreach( var n in list2)
-            {
-                if(delettext.ToString() == n.Placa)
-                {
-                    n.Placa = null;
-                    n.Data = null;
-                    n.Tempo_Permanenica = null;
-                    n.TotalPagar = null;
-                 
-                   
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = list2;
-                }
-            }
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-           
-            
-        }
 
         private void button8_Click_1(object sender, EventArgs e)
         {
-            int ana1 = int.Parse(analise1.Text);
-            var res = list2.Where(x => x.Time.Hour > ana1).Select(x=> x.Placa);
-            foreach(var a in res)
+            //  "Tempo de Entrada: >\nTemplo de Entrada: <\nTempo de Entrada: ="
+            if (comboBox1.Text == "Tempo de Entrada: >")
             {
-                ls.Add("Placa: "+ a.ToString() + "\n");
+                if(ls.Count() != 0) { ls.Clear(); }
+                int ana1 = int.Parse(analise1.Text);
+                var res = list2.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
+                foreach (var a in res)
+                {
+                    ls.Add("Placa: " + a.ToString() + "\n");
+                }
+                Estati estati = new Estati(ls);
+                estati.ShowDialog();
             }
-            Estati estati = new Estati(ls);
-            estati.ShowDialog();
+            if (comboBox1.Text == "Tempo de Entrada: <")
+            {
+                if (ls.Count() != 0) { ls.Clear(); }
+                int ana1 = int.Parse(analise1.Text);
+                var res = list2.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
+                foreach (var a in res)
+                {
+                    ls.Add("Placa: " + a.ToString() + "\n");
+                }
+                Estati estati = new Estati(ls);
+                estati.ShowDialog();
+            }
+            if (comboBox1.Text == "Tempo de Entrada: =")
+            {
+                if (ls.Count() != 0) { ls.Clear(); }
+                int ana1 = int.Parse(analise1.Text);
+                var res = list2.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
+                foreach (var a in res)
+                {
+                    ls.Add("Placa: " + a.ToString() + "\n");
+                }
+                Estati estati = new Estati(ls);
+                estati.ShowDialog();
+            }
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+           
+            var bindingList = new BindingList<Infocar>(list2);
+            var source = new BindingSource(bindingList, null);
+            dataGridView1.DataSource = source;
+            // ate aqui ta certo
+            dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+
+
+
+
+            textBox1.Text = list2.Count.ToString();
+            
+           
         }
     }
     

@@ -71,10 +71,13 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtSearchText = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Estatistica = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
+            this.analise1 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label8 = new System.Windows.Forms.Label();
@@ -83,10 +86,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-            this.delettext = new System.Windows.Forms.TextBox();
-            this.analise1 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -483,25 +482,18 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel3.Controls.Add(this.Estatistica);
             this.panel3.Controls.Add(this.label17);
+            this.panel3.Controls.Add(this.button8);
+            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.button6);
+            this.panel3.Controls.Add(this.analise1);
+            this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.button4);
             this.panel3.Location = new System.Drawing.Point(-2, 138);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(199, 532);
             this.panel3.TabIndex = 29;
-            // 
-            // Estatistica
-            // 
-            this.Estatistica.Location = new System.Drawing.Point(32, 405);
-            this.Estatistica.Name = "Estatistica";
-            this.Estatistica.Size = new System.Drawing.Size(142, 82);
-            this.Estatistica.TabIndex = 23;
-            this.Estatistica.Text = "Estatística";
-            this.Estatistica.UseVisualStyleBackColor = true;
-            this.Estatistica.Click += new System.EventHandler(this.button8_Click);
             // 
             // label17
             // 
@@ -512,6 +504,29 @@
             this.label17.Size = new System.Drawing.Size(173, 25);
             this.label17.TabIndex = 22;
             this.label17.Text = "Relatar Problemas";
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button8.Location = new System.Drawing.Point(32, 478);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(142, 31);
+            this.button8.TabIndex = 44;
+            this.button8.Text = "Filtro Avançado";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Tempo de Entrada: >",
+            "Tempo de Entrada: <",
+            "Tempo de Entrada: ="});
+            this.comboBox1.Location = new System.Drawing.Point(32, 449);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 23);
+            this.comboBox1.TabIndex = 45;
             // 
             // label16
             // 
@@ -535,6 +550,23 @@
             this.button6.TabIndex = 20;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // analise1
+            // 
+            this.analise1.Location = new System.Drawing.Point(32, 420);
+            this.analise1.Name = "analise1";
+            this.analise1.Size = new System.Drawing.Size(142, 23);
+            this.analise1.TabIndex = 41;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(71, 379);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(66, 21);
+            this.label19.TabIndex = 43;
+            this.label19.Text = "Análise";
             // 
             // DateTimePicker1
             // 
@@ -595,48 +627,14 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(638, 429);
+            this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button7.Location = new System.Drawing.Point(638, 414);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(544, 38);
             this.button7.TabIndex = 39;
-            this.button7.Text = "button7";
+            this.button7.Text = "Deletar Item Selecionado";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click_1);
-            // 
-            // delettext
-            // 
-            this.delettext.Location = new System.Drawing.Point(719, 429);
-            this.delettext.Name = "delettext";
-            this.delettext.Size = new System.Drawing.Size(475, 23);
-            this.delettext.TabIndex = 40;
-            // 
-            // analise1
-            // 
-            this.analise1.Location = new System.Drawing.Point(671, 636);
-            this.analise1.Name = "analise1";
-            this.analise1.Size = new System.Drawing.Size(100, 23);
-            this.analise1.TabIndex = 41;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(589, 638);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(66, 21);
-            this.label19.TabIndex = 43;
-            this.label19.Text = "Análise";
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button8.Location = new System.Drawing.Point(777, 631);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 31);
-            this.button8.TabIndex = 44;
-            this.button8.Text = "AnaliseEstati";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // Form1
             // 
@@ -644,10 +642,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1258, 671);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.analise1);
-            this.Controls.Add(this.delettext);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -747,10 +741,9 @@
         private Label label17;
         private Label label16;
         private Button button7;
-        private TextBox delettext;
-        private Button Estatistica;
         private TextBox analise1;
         private Label label19;
         private Button button8;
+        private ComboBox comboBox1;
     }
 }
