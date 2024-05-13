@@ -25,6 +25,7 @@ namespace Projeto_Estacionamento
         {
             InitializeComponent();
            
+           
         }
        
         DateTime d;
@@ -523,13 +524,13 @@ namespace Projeto_Estacionamento
                 string path = saveFileDialog.FileName;
                 StreamWriter sw = new StreamWriter(path);
 
-                FileStream arquivoPDF = new FileStream(saveFileDialog.FileName + ".pdf"  , FileMode.Create);
+                FileStream arquivoPDF = new FileStream(saveFileDialog.FileName + ".pdf", FileMode.Create);
                 Document doc = new Document(PageSize.A4);
                 PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
                 string dados = "";
                 Paragraph paragrafo = new Paragraph(dados, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 20, (int)System.Drawing.FontStyle.Bold));
                 paragrafo.Alignment = Element.ALIGN_CENTER;
-                paragrafo.Add("Registro de Ve�culos do Sistema\n\n");
+                paragrafo.Add("Registro de Veiculos do Sistema\n\n");
 
                 int i;
                 for (i = 0; i < list2.Count(); i++)
@@ -647,20 +648,21 @@ namespace Projeto_Estacionamento
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-           
+            /*
             var bindingList = new BindingList<Infocar>(list2);
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
             // ate aqui ta certo
             dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+            */
 
 
-
-
-            textBox1.Text = list2.Count.ToString();
             
+            textBox1.Text = list2.Count.ToString();
            
+
         }
+
     }
-    
+
 }
