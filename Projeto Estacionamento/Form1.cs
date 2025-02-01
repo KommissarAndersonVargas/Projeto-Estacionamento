@@ -9,76 +9,68 @@ using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Data;
-
+using System.Drawing;
 
 namespace Projeto_Estacionamento
 {
     using System.ComponentModel;
     using System.IO;
+    using System.IO.Ports;
     using System.Windows.Forms;
 
 
     public partial class Form1 : Form
     {
-      
+
         public Form1()
         {
             InitializeComponent();
-           
-           
+
+
         }
-       
+
         DateTime d;
         DateTime c;
         TimeSpan t;
         DateTime TimeNow = DateTime.Now;
         DataTable dtCarros = new DataTable();
-        string placa; 
+        string placa;
         int hora1;
         int min1;
         int hora2;
         int min2;
         Infocar car;
         List<TimeSpan> list = new List<TimeSpan>();
-        List<Infocar> list2 = new List<Infocar>();
+        BindingList<Infocar> carinformations = new BindingList<Infocar>();
         List<string> ls = new List<string>();
         // lista de objetos
         //Para salvar infos de um carro num pdf, botar no campo de procura procurar i nome que vai fazer
         //uma varredura numa lista de objteos até achar as infos; 
-       
+
         private void button1_Click(object sender, EventArgs e)
         {
-            int i=0;
-            
+            int i = 0;
             try
             {
                 hora1 = int.Parse(textBox1.Text);
                 min1 = int.Parse(textBox2.Text);
                 placa = textBox5.Text.ToString();
                 string data = DateTimePicker1.Text; // Vem do pequeno calendario datetime picker
-               
 
-                d = new DateTime( TimeNow.Year, TimeNow.Month, TimeNow.Day, hora1, min1, 0);
+
+                d = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora1, min1, 0);
                 DateTime HoraEntrada = d;
 
                 car = new Infocar(placa, HoraEntrada, data, "ainda não calculado");
 
-                
 
+                carinformations.Add(car);
+                Infocar.infocarsList.Add(car);
 
-
-                // dtCarros.Rows.Add(new object[] { placa, HoraEntrada, data, null });
-                //dtCarros.Rows.Add(placa, HoraEntrada, data, null);
-                //placa, hora, tempo permanencia, total pagar, data
-
-                // dataGridView1.DataSource = dtCarros;
-
-                list2.Add(car);
-                   
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = list2;
-                
-                
+                dataGridView1.DataSource = carinformations;
+
+
 
                 textBox1.Clear();
                 textBox2.Clear();
@@ -87,11 +79,11 @@ namespace Projeto_Estacionamento
                 textBox2.Focus();
                 textBox5.Focus();
             }
-            catch(Exception er)
+            catch (Exception er)
             {
-                MessageBox.Show("Erro: \n\n\n\n"+er.ToString());
+                MessageBox.Show("Erro: \n\n\n\n" + er.ToString());
             }
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -100,54 +92,54 @@ namespace Projeto_Estacionamento
             {
 
                 int i;
-                for (i = 0; i < list2.Count(); i++)
+                for (i = 0; i < carinformations.Count(); i++)
                 {
-                    if (textBox6.Text.ToString() == list2[i].Placa)
+                    if (textBox6.Text.ToString() == carinformations[i].Placa)
                     {
                         hora2 = int.Parse(textBox3.Text);
                         min2 = int.Parse(textBox4.Text);
                         c = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora2, min2, 0);
                         //t = c.Subtract(d);
-                        t = c.Subtract(list2[i].Time);
+                        t = c.Subtract(carinformations[i].Time);
 
-                        list2[i].Tempo_Permanenica = t.ToString();
-
+                        carinformations[i].Tempo_Permanenica = t.ToString();
+                        //REVER CONDIÇÕES DE PAGAMENTO ESTA ERRDADO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         if (t.Hours <= 1)
                         {
 
-                            list2[i].TotalPagar = " Total a pagar 3 $";
+                            carinformations[i].TotalPagar = " Total a pagar 3 $";
 
                         }
                         else if (t.Hours <= 2)
                         {
 
-                            list2[i].TotalPagar = " Total a pagar 5 $";
+                            carinformations[i].TotalPagar = " Total a pagar 5 $";
 
                         }
 
                         else if (t.Hours <= 3)
                         {
 
-                            list2[i].TotalPagar = " Total a pagar 7 $";
+                            carinformations[i].TotalPagar = " Total a pagar 7 $";
                         }
                         else if (t.Hours <= 4)
                         {
 
-                            list2[i].TotalPagar = " Total a pagar 10 $";
+                            carinformations[i].TotalPagar = " Total a pagar 10 $";
                         }
                         else if (t.Hours <= 5)
                         {
 
-                            list2[i].TotalPagar = " Total a pagar 13 $";
+                            carinformations[i].TotalPagar = " Total a pagar 13 $";
                         }
                         else
                         {
 
-                            list2[i].TotalPagar = " Total a pagar 20 $";
+                            carinformations[i].TotalPagar = " Total a pagar 20 $";
                         }
 
                         dataGridView1.DataSource = null;
-                        dataGridView1.DataSource = list2;
+                        dataGridView1.DataSource = carinformations;
                         //dtCarros.Rows.Add(placa, HoraEntrada, data, null);
                         //placa, hora, tempo permanencia, total pagar, data
 
@@ -162,7 +154,8 @@ namespace Projeto_Estacionamento
                 textBox6.Focus();
 
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("Erro: \n" + ex.ToString());
             }
         }
@@ -174,11 +167,11 @@ namespace Projeto_Estacionamento
                 t = c.Subtract(d);
                 list.Add(t);
             }
-            catch(Exception exce)
+            catch (Exception exce)
             {
-                MessageBox.Show("Error: \n\n "+ exce.ToString());
+                MessageBox.Show("Error: \n\n " + exce.ToString());
             }
-           
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -188,7 +181,7 @@ namespace Projeto_Estacionamento
                 Registro_de_Veiculos registro_De_Veiculos = new Registro_de_Veiculos();
                 registro_De_Veiculos.ShowDialog();
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 MessageBox.Show("Erro: \n\n" + er.ToString());
             }
@@ -197,18 +190,19 @@ namespace Projeto_Estacionamento
         private void search_Click(object sender, EventArgs e)
         {
             int i;
-            
-            for (i = 0; i < list2.Count(); i++)
+
+            for (i = 0; i < carinformations.Count(); i++)
             {
-                if(textboxprocurar.Text == list2[i].Placa .ToString())
+                if (textboxprocurar.Text == carinformations[i].Placa.ToString())
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.RestoreDirectory = true;
+                    saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
+                    saveFileDialog.FilterIndex = 2;
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        string path = saveFileDialog.FileName + i.ToString() + ".pdf";
-                      //  string name = @"C:\Users\Anderson\Documents\Imagens\cupom" + i.ToString() + ".pdf";
+                        string path = saveFileDialog.FileName;
                         FileStream arquivoPDF = new FileStream(path, FileMode.Create);
                         Document doc = new Document(PageSize.A4);
                         PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
@@ -224,15 +218,15 @@ namespace Projeto_Estacionamento
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                         paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Data: " + list2[i].Data + "\n");
+                        paragrafo.Add("Data: " + carinformations[i].Data + "\n");
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                         paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Placa: " + list2[i].Placa + "\n");
+                        paragrafo.Add("Placa: " + carinformations[i].Placa + "\n");
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                         paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Horario de entrada: " + list2[i].Time.Hour + ":" + list2[i].Time.Minute + "\n");
+                        paragrafo.Add("Horario de entrada: " + carinformations[i].Time.Hour + ":" + carinformations[i].Time.Minute + "\n");
 
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
@@ -258,205 +252,51 @@ namespace Projeto_Estacionamento
                 }
                 */
             }
-            
-          
+
+
 
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
 
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Estamos chamando a pol�cia ...");
-            
-        }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Relatar relatar = new Relatar ();
-            relatar.ShowDialog();
+
         }
 
         private void salvarToolStripButton_Click(object sender, EventArgs e)
         {
-           /*
-
-            Stream myStream;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
-            saveFileDialog.FilterIndex = 2;
-            saveFileDialog.RestoreDirectory = true;
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-               string path = saveFileDialog.FileName;
-                StreamWriter sw = new StreamWriter(path);
-                for (int w = 0; w < list2.Count(); w++)
+                saveFileDialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    try
-                    {
+                    string jsonString = System.Text.Json.JsonSerializer.Serialize(carinformations);
+                    File.WriteAllText(saveFileDialog.FileName, jsonString);
 
-                        if (w == 0)
-                        {
-                            sw.WriteLine(list2.Count());
-                            sw.WriteLine(list2[w].Placa.ToString());
-                            sw.WriteLine(list2[w].Hora_Entrada.ToString());
-                            sw.WriteLine(list2[w].min.ToString());
-                            sw.WriteLine(list2[w].Tempo_Permanenica.ToString());
-                            sw.WriteLine(list2[w].Data.ToString());
-                           
-                        }
-                        else
-                        {
-                          
-                           
-                            sw.WriteLine(list2[w].Placa.ToString());
-                            sw.WriteLine(list2[w].Hora_Entrada.ToString());
-                            sw.WriteLine(list2[w].min.ToString());
-                            sw.WriteLine(list2[w].Tempo_Permanenica.ToString());
-                            sw.WriteLine(list2[w].Data.ToString());
-                          
-                        }
-                       
-                    }
-
-                    catch (Exception ey)
-                    {
-                        MessageBox.Show("ERROR: " + ey.Message);
-                    }
-
-                  
+                    MessageBox.Show("Arquivo salvo com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-              
-                sw.Close();
             }
-
-
-            */
-
-            
-
-            
-           //  Serializa��o basica de json
-
-            string fileName = @"C:\Users\Usuario\Documents\Json\WeatherForecast.json";
-        // @"C:\Users\Anderson\Documents\Json\WeatherForecast.json"
-        C: //C:\Users\Usuario\Documents\Json
-            string jsonString = System.Text.Json.JsonSerializer.Serialize(list2);
-            File.WriteAllText(fileName, jsonString);
-            //File.WriteAllText(openFileDialog.InitialDirectory, jsonString);
-            
-            MessageBox.Show("Salvo com sucesso");
-
         }
 
         private void abrirToolStripButton_Click(object sender, EventArgs e)
-        {/*
-            openFileDialog1.ShowDialog();
-            string filename = openFileDialog1.FileName;
-            string readfile = File.ReadAllText(filename);
-            */
-            /*
-            OpenFileDialog d1 = new OpenFileDialog();
-            d1.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
-            string file = d1.FileName;
-            string str;
-            if (d1.ShowDialog() == DialogResult.OK)
-            {
+        {
 
-                textBox1.Text = d1.FileName;
-
-                str = File.ReadAllText(d1.FileName);
-              
-                string[] ler = File.ReadAllLines(d1.FileName);
-
-
-
-
-                int v = 0;
-                int w;
-
-                int loop = int.Parse(ler[0]);
-
-                for (w = 0; w < loop; w++)
-                {
-                    
-                    Infocar carro = new Infocar(ler[1 + v].ToString(), int.Parse(ler[2 + v]), int.Parse(ler[3 + v]), ler[4 + v].ToString(), ler[5 + v].ToString());
-                    
-
-                    list2.Add(carro);
-
-                    string horas = ler[4+v].Substring(0,2);
-                    
-                    if (int.Parse(horas) <= 1)
-                    {
-
-                        list2[w].TotalPagar = " Total a pagar 3 $";
-
-                    }
-                    else if (int.Parse(horas) <= 02)
-                    {
-
-                        list2[w].TotalPagar = " Total a pagar 5 $";
-
-                    }
-
-                    else if (int.Parse(horas) <= 03)
-                    {
-
-                        list2[w].TotalPagar = " Total a pagar 7 $";
-                    }
-                    else if (int.Parse(horas) <= 04)
-                    {
-
-                        list2[w].TotalPagar = " Total a pagar 10 $";
-                    }
-                    else if (int.Parse(horas) <= 05)
-                    {
-
-                        list2[w].TotalPagar = " Total a pagar 13 $";
-                    }
-                    else
-                    {
-
-                        list2[w].TotalPagar = " Total a pagar 20 $";
-                    }
-
-                    
-                   
-                    
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = list2;
-                    v = 5 * (w + 1);
-
-
-                }
-            }
-            */
-
-
-            // ARQUIVO JSON DESSERIALIZAR
-            string fileName = @"C:\Users\Usuario\Documents\Json\WeatherForecast.json";
-
-             list2 = infocar();
+            carinformations = Desserialization();
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = list2;
+            dataGridView1.DataSource = carinformations;
 
-            textboxprocurar.Text = list2.Count().ToString();
+            textboxprocurar.Text = carinformations.Count().ToString();
             textBox1.Focus();
-
-
-
-
-
-
         }
 
         private void novaToolStripButton_Click(object sender, EventArgs e)
@@ -478,14 +318,14 @@ namespace Projeto_Estacionamento
 
         private void button7_Click(object sender, EventArgs e)
         {
-            textBox1.Text = list2.Count().ToString();
+            textBox1.Text = carinformations.Count().ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             SearchInDataGrid(txtSearchText.Text);
         }
-       
+
 
         private void SearchInDataGrid(string searchText)
         {
@@ -504,7 +344,7 @@ namespace Projeto_Estacionamento
                     }
                 }
             }
-            catch(Exception ef)
+            catch (Exception ef)
             {
                 MessageBox.Show("Erro: " + ef.ToString());
             }
@@ -512,19 +352,17 @@ namespace Projeto_Estacionamento
 
         private void imprimirToolStripButton_Click(object sender, EventArgs e)
         {
-            //string name = @"C:\Users\Anderson\Documents\Imagens\Registro "  + DateTimePicker1.Text + ".pdf"; // SUBSTIRUIR POR UM OPEM FILE DIALOG
-            Stream myStream;
+
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
-            //saveFileDialog.FilterIndex = 2;
+            saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
+            saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string path = saveFileDialog.FileName;
-                StreamWriter sw = new StreamWriter(path);
 
-                FileStream arquivoPDF = new FileStream(saveFileDialog.FileName + ".pdf", FileMode.Create);
+                FileStream arquivoPDF = new FileStream(saveFileDialog.FileName, FileMode.Create);
                 Document doc = new Document(PageSize.A4);
                 PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
                 string dados = "";
@@ -533,7 +371,7 @@ namespace Projeto_Estacionamento
                 paragrafo.Add("Registro de Veiculos do Sistema\n\n");
 
                 int i;
-                for (i = 0; i < list2.Count(); i++)
+                for (i = 0; i < carinformations.Count(); i++)
                 {
 
 
@@ -550,20 +388,20 @@ namespace Projeto_Estacionamento
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Data: " + list2[i].Data + "\n");
+                    paragrafo.Add("Data: " + carinformations[i].Data + "\n");
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Placa: " + list2[i].Placa + "\n");
+                    paragrafo.Add("Placa: " + carinformations[i].Placa + "\n");
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Horario de entrada: " + list2[i].Time.Hour + ":" + list2[i].Time.Minute + "\n");
+                    paragrafo.Add("Horario de entrada: " + carinformations[i].Time.Hour + ":" + carinformations[i].Time.Minute + "\n");
 
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Tempo de permanencia: " + list2[i].Tempo_Permanenica + "\n");
+                    paragrafo.Add("Tempo de permanencia: " + carinformations[i].Tempo_Permanenica + "\n");
 
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
@@ -576,27 +414,33 @@ namespace Projeto_Estacionamento
 
 
 
-                   
+
 
                 }
                 doc.Open();
                 doc.Add(paragrafo);
                 doc.Close();
-                MessageBox.Show("Arquivo gerado com sucesso");
+                MessageBox.Show("Registro gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
 
 
         }
 
-        static List<Infocar> infocar()
+        static BindingList<Infocar> Desserialization()
         {
-            string directory = @"C:\Users\Usuario\Documents\Json\WeatherForecast.json";
-            
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos JSON (*.json)|*.json";
 
-                var car = JsonConvert.DeserializeObject<List<Infocar>>(File.ReadAllText(directory));
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var car = JsonConvert.DeserializeObject<BindingList<Infocar>>(File.ReadAllText(openFileDialog.FileName));
                 return car;
-            
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private DataGridView GetDataGridView1()
@@ -610,38 +454,38 @@ namespace Projeto_Estacionamento
             //  "Tempo de Entrada: >\nTemplo de Entrada: <\nTempo de Entrada: ="
             if (comboBox1.Text == "Tempo de Entrada: >")
             {
-                if(ls.Count() != 0) { ls.Clear(); }
+                if (ls.Count() != 0) { ls.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
-                var res = list2.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
+                var res = carinformations.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
                     ls.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls);
+                Estati estati = new Estati(ls, carinformations.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: <")
             {
                 if (ls.Count() != 0) { ls.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
-                var res = list2.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
+                var res = carinformations.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
                     ls.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls);
+                Estati estati = new Estati(ls, carinformations.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: =")
             {
                 if (ls.Count() != 0) { ls.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
-                var res = list2.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
+                var res = carinformations.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
                     ls.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls);
+                Estati estati = new Estati(ls, carinformations.Count());
                 estati.ShowDialog();
             }
         }
@@ -649,7 +493,7 @@ namespace Projeto_Estacionamento
         private void button7_Click_1(object sender, EventArgs e)
         {
             /*
-            var bindingList = new BindingList<Infocar>(list2);
+            var bindingList = new BindingBindingList<Infocar>(carinformations);
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
             // ate aqui ta certo
@@ -657,12 +501,41 @@ namespace Projeto_Estacionamento
             */
 
 
-            
-            textBox1.Text = list2.Count.ToString();
-           
+
+            textBox1.Text = carinformations.Count.ToString();
+
 
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

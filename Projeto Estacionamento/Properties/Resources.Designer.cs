@@ -63,9 +63,9 @@ namespace Projeto_Estacionamento.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Avaliacao {
+        internal static System.Drawing.Bitmap _12052490_suggestion_feedback_rating_review_negative_icon {
             get {
-                object obj = ResourceManager.GetObject("Avaliacao", resourceCulture);
+                object obj = ResourceManager.GetObject("_12052490_suggestion_feedback_rating_review_negative_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Projeto_Estacionamento.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap menor {
+        internal static System.Drawing.Bitmap _1243670_antenna_wifi_conection_router_signal_icon {
             get {
-                object obj = ResourceManager.GetObject("menor", resourceCulture);
+                object obj = ResourceManager.GetObject("_1243670_antenna_wifi_conection_router_signal_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,39 @@ namespace Projeto_Estacionamento.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pencil {
+        internal static System.Drawing.Bitmap _4288598_analysis_analytics_chart_data_pie_icon {
             get {
-                object obj = ResourceManager.GetObject("pencil", resourceCulture);
+                object obj = ResourceManager.GetObject("_4288598_analysis_analytics_chart_data_pie_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _4373076_adobe_file_logo_logos_pdf_icon {
+            get {
+                object obj = ResourceManager.GetObject("_4373076_adobe_file_logo_logos_pdf_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _9043885_automatic_icon {
+            get {
+                object obj = ResourceManager.GetObject("_9043885_automatic_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap excel {
+            get {
+                object obj = ResourceManager.GetObject("excel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
