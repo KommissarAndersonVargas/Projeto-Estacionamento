@@ -30,15 +30,15 @@ namespace Projeto_Estacionamento
         }
 
         DateTime d;
-        DateTime c;
-        TimeSpan t;
+        DateTime leftHour;
+        TimeSpan difference;
         DateTime TimeNow = DateTime.Now;
         DataTable dtCarros = new DataTable();
         string placa;
         int hora1;
         int min1;
-        int hora2;
-        int min2;
+        int leftTimeHour;
+        int leftMin;
         Infocar car;
         List<TimeSpan> list = new List<TimeSpan>();
         BindingList<Infocar> carinformations = new BindingList<Infocar>();
@@ -91,58 +91,53 @@ namespace Projeto_Estacionamento
             try
             {
 
-                int i;
-                for (i = 0; i < carinformations.Count(); i++)
+                foreach (var cars in carinformations)
                 {
-                    if (textBox6.Text.ToString() == carinformations[i].Placa)
+                    if (textBox6.Text.ToString().Equals(cars.Placa))
                     {
-                        hora2 = int.Parse(textBox3.Text);
-                        min2 = int.Parse(textBox4.Text);
-                        c = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora2, min2, 0);
-                        //t = c.Subtract(d);
-                        t = c.Subtract(carinformations[i].Time);
+                        leftTimeHour = int.Parse(textBox3.Text);
+                        leftMin = int.Parse(textBox4.Text);
+                        leftHour = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, leftTimeHour, leftMin, 0);
+                        difference = leftHour.Subtract(car.Time);
 
-                        carinformations[i].Tempo_Permanenica = t.ToString();
-                        //REVER CONDIÇÕES DE PAGAMENTO ESTA ERRDADO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        if (t.Hours <= 1)
+                        car.Tempo_Permanenica = difference.ToString();
+                        
+                        if (difference.Hours > 0 && difference.Hours <= 1)
                         {
 
-                            carinformations[i].TotalPagar = " Total a pagar 3 $";
+                            car.TotalPagar = " Total a pagar 3 $";
 
                         }
-                        else if (t.Hours <= 2)
+                        else if (difference.Hours > 1 && difference.Hours <= 2)
                         {
 
-                            carinformations[i].TotalPagar = " Total a pagar 5 $";
+                            car.TotalPagar = " Total a pagar 5 $";
 
                         }
 
-                        else if (t.Hours <= 3)
+                        else if (difference.Hours > 2 && difference.Hours <= 3)
                         {
 
-                            carinformations[i].TotalPagar = " Total a pagar 7 $";
+                            car.TotalPagar = " Total a pagar 7 $";
                         }
-                        else if (t.Hours <= 4)
+                        else if (difference.Hours > 3 && difference.Hours <= 4)
                         {
 
-                            carinformations[i].TotalPagar = " Total a pagar 10 $";
+                            car.TotalPagar = " Total a pagar 10 $";
                         }
-                        else if (t.Hours <= 5)
+                        else if (difference.Hours > 4 && difference.Hours <= 5)
                         {
 
-                            carinformations[i].TotalPagar = " Total a pagar 13 $";
+                            car.TotalPagar = " Total a pagar 13 $";
                         }
                         else
                         {
 
-                            carinformations[i].TotalPagar = " Total a pagar 20 $";
+                            car.TotalPagar = " Total a pagar 20 $";
                         }
 
                         dataGridView1.DataSource = null;
                         dataGridView1.DataSource = carinformations;
-                        //dtCarros.Rows.Add(placa, HoraEntrada, data, null);
-                        //placa, hora, tempo permanencia, total pagar, data
-
                     }
                 }
 
@@ -164,8 +159,8 @@ namespace Projeto_Estacionamento
         {
             try
             {
-                t = c.Subtract(d);
-                list.Add(t);
+                difference = leftHour.Subtract(d);
+                list.Add(difference);
             }
             catch (Exception exce)
             {
