@@ -1,74 +1,53 @@
-using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System;
-using System.IO;
-using System.Text.Json;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 using System.Data;
-using System.Drawing;
+using System.ComponentModel;
+using Projeto_Estacionamento.Classes;
+using Projeto_Estacionamento.Factory;
 
 namespace Projeto_Estacionamento
 {
-    using System.ComponentModel;
-    using System.IO;
-    using System.IO.Ports;
-    using System.Windows.Forms;
-
-
     public partial class Form1 : Form
     {
 
         public Form1()
         {
             InitializeComponent();
-
-
         }
 
-        DateTime d;
-        DateTime leftHour;
-        TimeSpan difference;
-        DateTime TimeNow = DateTime.Now;
-        DataTable dtCarros = new DataTable();
-        string placa;
-        int hora1;
-        int min1;
-        int leftTimeHour;
-        int leftMin;
-        Infocar car;
-        List<TimeSpan> list = new List<TimeSpan>();
-        BindingList<Infocar> carinformations = new BindingList<Infocar>();
+        public DateTime d;  // FUTURO: Inserir em uma classe para operações de DateTime
+        public DateTime leftHour; // FUTURO: Inserir em uma classe para operações de DateTime
+        public TimeSpan difference; // FUTURO: Inserir em uma classe para operações de DateTime
+        DateTime TimeNow = DateTime.Now; // FUTURO: Inserir em uma classe para operações de DateTime
+        string placa; 
+        int hora1; // FUTURO: Inserir em uma classe para operações de DateTime
+        int min1; // FUTURO: Inserir em uma classe para operações de DateTime
+        int leftTimeHour; // FUTURO: Inserir em uma classe para operações de DateTime
+        int leftMin; // FUTURO: Inserir em uma classe para operações de DateTime
+        BasicParkingLot car;
+        public List<TimeSpan> list = new List<TimeSpan>();
         List<string> ls = new List<string>();
-        // lista de objetos
-        //Para salvar infos de um carro num pdf, botar no campo de procura procurar i nome que vai fazer
-        //uma varredura numa lista de objteos até achar as infos; 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int i = 0;
             try
             {
                 hora1 = int.Parse(textBox1.Text);
                 min1 = int.Parse(textBox2.Text);
                 placa = textBox5.Text.ToString();
-                string data = DateTimePicker1.Text; // Vem do pequeno calendario datetime picker
+                string data = DateTimePicker1.Text;
 
 
                 d = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora1, min1, 0);
                 DateTime HoraEntrada = d;
 
-                car = new Infocar(placa, HoraEntrada, data, "ainda não calculado");
+                car = InfocarSimpleFactory.CreateCar(placa, HoraEntrada, data, "ainda não calculado");
 
-
-                carinformations.Add(car);
-                Infocar.infocarsList.Add(car);
+                Infocar.infocarsList.Add((Infocar)car);
 
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = carinformations;
+                dataGridView1.DataSource = Infocar.infocarsList;
 
 
 
@@ -81,7 +60,7 @@ namespace Projeto_Estacionamento
             }
             catch (Exception er)
             {
-                MessageBox.Show("Erro: \n\n\n\n" + er.ToString());
+                MessageBox.Show("Error:" + er.ToString());
             }
 
         }
@@ -91,53 +70,53 @@ namespace Projeto_Estacionamento
             try
             {
 
-                foreach (var cars in carinformations)
+                foreach (var cars in Infocar.infocarsList)
                 {
-                    if (textBox6.Text.ToString().Equals(cars.Placa))
+                    if (textBox6.Text.Equals(cars.Placa))
                     {
                         leftTimeHour = int.Parse(textBox3.Text);
                         leftMin = int.Parse(textBox4.Text);
                         leftHour = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, leftTimeHour, leftMin, 0);
-                        difference = leftHour.Subtract(car.Time);
+                        difference = leftHour.Subtract(cars.Time);
 
-                        car.Tempo_Permanenica = difference.ToString();
+                        cars.Tempo_Permanenica = difference.ToString();
                         
                         if (difference.Hours > 0 && difference.Hours <= 1)
                         {
 
-                            car.TotalPagar = " Total a pagar 3 $";
+                            cars.TotalPagar = " Total a pagar 3 $";
 
                         }
                         else if (difference.Hours > 1 && difference.Hours <= 2)
                         {
 
-                            car.TotalPagar = " Total a pagar 5 $";
+                            cars.TotalPagar = " Total a pagar 5 $";
 
                         }
 
                         else if (difference.Hours > 2 && difference.Hours <= 3)
                         {
 
-                            car.TotalPagar = " Total a pagar 7 $";
+                            cars.TotalPagar = " Total a pagar 7 $";
                         }
                         else if (difference.Hours > 3 && difference.Hours <= 4)
                         {
 
-                            car.TotalPagar = " Total a pagar 10 $";
+                            cars.TotalPagar = " Total a pagar 10 $";
                         }
                         else if (difference.Hours > 4 && difference.Hours <= 5)
                         {
 
-                            car.TotalPagar = " Total a pagar 13 $";
+                            cars.TotalPagar = " Total a pagar 13 $";
                         }
                         else
                         {
 
-                            car.TotalPagar = " Total a pagar 20 $";
+                            cars.TotalPagar = " Total a pagar 20 $";
                         }
 
                         dataGridView1.DataSource = null;
-                        dataGridView1.DataSource = carinformations;
+                        dataGridView1.DataSource = Infocar.infocarsList;
                     }
                 }
 
@@ -186,9 +165,9 @@ namespace Projeto_Estacionamento
         {
             int i;
 
-            for (i = 0; i < carinformations.Count(); i++)
+            for (i = 0; i < Infocar.infocarsList.Count(); i++)
             {
-                if (textboxprocurar.Text == carinformations[i].Placa.ToString())
+                if (textboxprocurar.Text == Infocar.infocarsList[i].Placa.ToString())
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.RestoreDirectory = true;
@@ -213,15 +192,15 @@ namespace Projeto_Estacionamento
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                         paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Data: " + carinformations[i].Data + "\n");
+                        paragrafo.Add("Data: " + Infocar.infocarsList[i].Data + "\n");
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                         paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Placa: " + carinformations[i].Placa + "\n");
+                        paragrafo.Add("Placa: " + Infocar.infocarsList[i].Placa + "\n");
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                         paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Horario de entrada: " + carinformations[i].Time.Hour + ":" + carinformations[i].Time.Minute + "\n");
+                        paragrafo.Add("Horario de entrada: " + Infocar.infocarsList[i].Time.Hour + ":" + Infocar.infocarsList[i].Time.Minute + "\n");
 
 
                         paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
@@ -274,7 +253,7 @@ namespace Projeto_Estacionamento
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string jsonString = System.Text.Json.JsonSerializer.Serialize(carinformations);
+                    string jsonString = System.Text.Json.JsonSerializer.Serialize(Infocar.infocarsList);
                     File.WriteAllText(saveFileDialog.FileName, jsonString);
 
                     MessageBox.Show("Arquivo salvo com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -285,12 +264,12 @@ namespace Projeto_Estacionamento
         private void abrirToolStripButton_Click(object sender, EventArgs e)
         {
 
-            carinformations = Desserialization();
+            Infocar.infocarsList = Desserialization();
 
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = carinformations;
+            dataGridView1.DataSource = Infocar.infocarsList;
 
-            textboxprocurar.Text = carinformations.Count().ToString();
+            textboxprocurar.Text = Infocar.infocarsList.Count().ToString();
             textBox1.Focus();
         }
 
@@ -313,7 +292,7 @@ namespace Projeto_Estacionamento
 
         private void button7_Click(object sender, EventArgs e)
         {
-            textBox1.Text = carinformations.Count().ToString();
+            textBox1.Text = Infocar.infocarsList.Count().ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -366,7 +345,7 @@ namespace Projeto_Estacionamento
                 paragrafo.Add("Registro de Veiculos do Sistema\n\n");
 
                 int i;
-                for (i = 0; i < carinformations.Count(); i++)
+                for (i = 0; i < Infocar.infocarsList.Count(); i++)
                 {
 
 
@@ -383,20 +362,20 @@ namespace Projeto_Estacionamento
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Data: " + carinformations[i].Data + "\n");
+                    paragrafo.Add("Data: " + Infocar.infocarsList[i].Data + "\n");
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Placa: " + carinformations[i].Placa + "\n");
+                    paragrafo.Add("Placa: " + Infocar.infocarsList[i].Placa + "\n");
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Horario de entrada: " + carinformations[i].Time.Hour + ":" + carinformations[i].Time.Minute + "\n");
+                    paragrafo.Add("Horario de entrada: " + Infocar.infocarsList[i].Time.Hour + ":" + Infocar.infocarsList[i].Time.Minute + "\n");
 
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Tempo de permanencia: " + carinformations[i].Tempo_Permanenica + "\n");
+                    paragrafo.Add("Tempo de permanencia: " + Infocar.infocarsList[i].Tempo_Permanenica + "\n");
 
 
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
@@ -451,36 +430,36 @@ namespace Projeto_Estacionamento
             {
                 if (ls.Count() != 0) { ls.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
-                var res = carinformations.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
+                var res = Infocar.infocarsList.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
                     ls.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls, carinformations.Count());
+                Estati estati = new Estati(ls, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: <")
             {
                 if (ls.Count() != 0) { ls.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
-                var res = carinformations.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
+                var res = Infocar.infocarsList.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
                     ls.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls, carinformations.Count());
+                Estati estati = new Estati(ls, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: =")
             {
                 if (ls.Count() != 0) { ls.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
-                var res = carinformations.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
+                var res = Infocar.infocarsList.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
                     ls.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls, carinformations.Count());
+                Estati estati = new Estati(ls, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
         }
@@ -488,7 +467,7 @@ namespace Projeto_Estacionamento
         private void button7_Click_1(object sender, EventArgs e)
         {
             /*
-            var bindingList = new BindingBindingList<Infocar>(carinformations);
+            var bindingList = new BindingBindingList<Infocar>(Infocar.infocarsList);
             var source = new BindingSource(bindingList, null);
             dataGridView1.DataSource = source;
             // ate aqui ta certo
@@ -497,7 +476,7 @@ namespace Projeto_Estacionamento
 
 
 
-            textBox1.Text = carinformations.Count.ToString();
+            textBox1.Text = Infocar.infocarsList.Count.ToString();
 
 
         }
