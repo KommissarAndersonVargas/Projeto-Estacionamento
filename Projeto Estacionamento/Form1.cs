@@ -16,13 +16,13 @@ namespace Projeto_Estacionamento
             InitializeComponent();
         }
 
-        public DateTime d;  // FUTURO: Inserir em uma classe para operações de DateTime
+        public DateTime arriveTime;  // FUTURO: Inserir em uma classe para operações de DateTime
         public DateTime leftHour; // FUTURO: Inserir em uma classe para operações de DateTime
         public TimeSpan difference; // FUTURO: Inserir em uma classe para operações de DateTime
         DateTime TimeNow = DateTime.Now; // FUTURO: Inserir em uma classe para operações de DateTime
-        string placa; 
-        int hora1; // FUTURO: Inserir em uma classe para operações de DateTime
-        int min1; // FUTURO: Inserir em uma classe para operações de DateTime
+        string plot;
+        int arriveHour; // FUTURO: Inserir em uma classe para operações de DateTime
+        int arriveMin; // FUTURO: Inserir em uma classe para operações de DateTime
         int leftTimeHour; // FUTURO: Inserir em uma classe para operações de DateTime
         int leftMin; // FUTURO: Inserir em uma classe para operações de DateTime
         BasicParkingLot car;
@@ -33,16 +33,16 @@ namespace Projeto_Estacionamento
         {
             try
             {
-                hora1 = int.Parse(textBox1.Text);
-                min1 = int.Parse(textBox2.Text);
-                placa = textBox5.Text.ToString();
+                arriveHour = int.Parse(textBox1.Text);
+                arriveMin = int.Parse(textBox2.Text);
+                plot = textBox5.Text.ToString();
                 string data = DateTimePicker1.Text;
 
 
-                d = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, hora1, min1, 0);
-                DateTime HoraEntrada = d;
+                arriveTime = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, arriveHour, arriveMin, 0);
+                DateTime HoraEntrada = arriveTime;
 
-                car = InfocarSimpleFactory.CreateCar(placa, HoraEntrada, data, "ainda não calculado");
+                car = InfocarSimpleFactory.CreateCar(plot, HoraEntrada, data, "ainda não calculado");
 
                 Infocar.infocarsList.Add((Infocar)car);
 
@@ -80,7 +80,7 @@ namespace Projeto_Estacionamento
                         difference = leftHour.Subtract(cars.Time);
 
                         cars.Tempo_Permanenica = difference.ToString();
-                        
+
                         if (difference.Hours > 0 && difference.Hours <= 1)
                         {
 
@@ -138,7 +138,7 @@ namespace Projeto_Estacionamento
         {
             try
             {
-                difference = leftHour.Subtract(d);
+                difference = leftHour.Subtract(arriveTime);
                 list.Add(difference);
             }
             catch (Exception exce)
@@ -218,31 +218,7 @@ namespace Projeto_Estacionamento
                         break;
                     }
                 }
-                /*
-                else
-                {
-                    MessageBox.Show("Placa nao existente");
-                    break;
-                }
-                */
             }
-
-
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-
-
-        }
-
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void salvarToolStripButton_Click(object sender, EventArgs e)
@@ -347,10 +323,6 @@ namespace Projeto_Estacionamento
                 int i;
                 for (i = 0; i < Infocar.infocarsList.Count(); i++)
                 {
-
-
-
-
                     paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14, (int)System.Drawing.FontStyle.Bold);
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
                     paragrafo.Add("Parking Lot Super\n");
@@ -386,19 +358,12 @@ namespace Projeto_Estacionamento
                     paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
                     paragrafo.Add(" Parking lot Super System � \n\n");
 
-
-
-
-
                 }
                 doc.Open();
                 doc.Add(paragrafo);
                 doc.Close();
                 MessageBox.Show("Registro gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
-
-
         }
 
         static BindingList<Infocar> Desserialization()
@@ -466,50 +431,7 @@ namespace Projeto_Estacionamento
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            /*
-            var bindingList = new BindingBindingList<Infocar>(Infocar.infocarsList);
-            var source = new BindingSource(bindingList, null);
-            dataGridView1.DataSource = source;
-            // ate aqui ta certo
-            dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
-            */
-
-
-
             textBox1.Text = Infocar.infocarsList.Count.ToString();
-
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
-
 }

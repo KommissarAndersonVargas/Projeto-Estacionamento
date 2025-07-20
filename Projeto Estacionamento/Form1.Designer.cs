@@ -108,7 +108,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(61, 23);
             textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -286,7 +285,6 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(544, 234);
             dataGridView1.TabIndex = 27;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // panel1
             // 
@@ -411,7 +409,6 @@
             button4.Text = "Parking Lot Automatic";
             button4.TextAlign = ContentAlignment.MiddleRight;
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click_1;
             // 
             // button3
             // 
@@ -502,7 +499,6 @@
             label19.Size = new Size(66, 21);
             label19.TabIndex = 43;
             label19.Text = "Análise";
-            label19.Click += label19_Click;
             // 
             // monthCalendar1
             // 
@@ -574,7 +570,6 @@
             label16.Size = new Size(10, 15);
             label16.TabIndex = 40;
             label16.Text = ":";
-            label16.Click += label16_Click;
             // 
             // label5
             // 
@@ -649,7 +644,6 @@
             Name = "Form1";
             Text = "Parking Lot Super System ";
             WindowState = FormWindowState.Maximized;
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
