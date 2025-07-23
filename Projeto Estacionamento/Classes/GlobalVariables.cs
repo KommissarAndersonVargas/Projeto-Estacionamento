@@ -25,5 +25,7 @@ namespace Projeto_Estacionamento.Classes
         public static BasicParkingLot car;
 
         public static List<TimeSpan> timeSpanList = new List<TimeSpan>();
+
+        public static List<string> filterValues = new List<string>();
     }
 }

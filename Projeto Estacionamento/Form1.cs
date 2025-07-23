@@ -16,32 +16,23 @@ namespace Projeto_Estacionamento
             InitializeComponent();
         }
 
-        string plot;
-        int arriveHour; // FUTURO: Inserir em uma classe para operações de DateTime
-        int arriveMin; // FUTURO: Inserir em uma classe para operações de DateTime
-        int leftTimeHour; // FUTURO: Inserir em uma classe para operações de DateTime
-        int leftMin; // FUTURO: Inserir em uma classe para operações de DateTime
-        BasicParkingLot car;
-        public List<TimeSpan> timeSpanList = new List<TimeSpan>();
-        List<string> filterValues = new List<string>();
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                arriveHour = int.Parse(textBox1.Text);
-                arriveMin = int.Parse(textBox2.Text);
-                plot = textBox5.Text.ToString();
+                GlobalVariables.arriveHour = int.Parse(textBox1.Text);
+                GlobalVariables.arriveMin = int.Parse(textBox2.Text);
+                GlobalVariables.plot = textBox5.Text.ToString();
                 string data = DateTimePicker1.Text;
 
                 GlobalVariables.arriveTime 
                     = 
-                new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, arriveHour, arriveMin, 0);
+                new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.arriveHour, GlobalVariables.arriveMin, 0);
                 DateTime HoraEntrada = GlobalVariables.arriveTime;
 
-                car = InfocarSimpleFactory.CreateCar(plot, HoraEntrada, data, "ainda não calculado");
+                GlobalVariables.car = InfocarSimpleFactory.CreateCar(GlobalVariables.plot, HoraEntrada, data, "ainda não calculado");
 
-                Infocar.infocarsList.Add((Infocar)car);
+                Infocar.infocarsList.Add((Infocar)GlobalVariables.car);
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = Infocar.infocarsList;
@@ -70,11 +61,11 @@ namespace Projeto_Estacionamento
                 {
                     if (textBox6.Text.Equals(cars.Placa))
                     {
-                        leftTimeHour = int.Parse(textBox3.Text);
-                        leftMin = int.Parse(textBox4.Text);
+                        GlobalVariables.leftTimeHour = int.Parse(textBox3.Text);
+                        GlobalVariables.leftMin = int.Parse(textBox4.Text);
                         GlobalVariables.leftHour
                             = 
-                        new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, leftTimeHour, leftMin, 0);
+                        new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.leftTimeHour, GlobalVariables.leftMin, 0);
                         GlobalVariables.difference = GlobalVariables.leftHour.Subtract(cars.Time);
 
                         cars.Tempo_Permanenica = GlobalVariables.difference.ToString();
@@ -137,7 +128,7 @@ namespace Projeto_Estacionamento
             try
             {
                 GlobalVariables.difference = GlobalVariables.leftHour.Subtract(GlobalVariables.arriveTime);
-                timeSpanList.Add(GlobalVariables.difference);
+                GlobalVariables.timeSpanList.Add(GlobalVariables.difference);
             }
             catch (Exception exce)
             {
@@ -384,38 +375,38 @@ namespace Projeto_Estacionamento
         {
             if (comboBox1.Text == "Tempo de Entrada: >")
             {
-                if (filterValues.Count() != 0) { filterValues.Clear(); }
+                if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
                 var res = Infocar.infocarsList.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
-                    filterValues.Add("Placa: " + a.ToString() + "\n");
+                    GlobalVariables.filterValues.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(filterValues, Infocar.infocarsList.Count());
+                Estati estati = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: <")
             {
-                if (filterValues.Count() != 0) { filterValues.Clear(); }
+                if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
                 var res = Infocar.infocarsList.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
-                    filterValues.Add("Placa: " + a.ToString() + "\n");
+                    GlobalVariables.filterValues.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(filterValues, Infocar.infocarsList.Count());
+                Estati estati = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: =")
             {
-                if (filterValues.Count() != 0) { filterValues.Clear(); }
+                if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
                 var res = Infocar.infocarsList.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
-                    filterValues.Add("Placa: " + a.ToString() + "\n");
+                    GlobalVariables.filterValues.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(filterValues, Infocar.infocarsList.Count());
+                Estati estati = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
         }
