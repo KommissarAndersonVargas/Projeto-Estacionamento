@@ -20,10 +20,10 @@ namespace Projeto_Estacionamento
         {
             try
             {
-                GlobalVariables.arriveHour = int.Parse(textBox1.Text);
-                GlobalVariables.arriveMin = int.Parse(textBox2.Text);
-                GlobalVariables.plot = textBox5.Text.ToString();
-                string data = DateTimePicker1.Text;
+                GlobalVariables.arriveHour = int.Parse(lblArriveHour.Text);
+                GlobalVariables.arriveMin = int.Parse(lblArriveMin.Text);
+                GlobalVariables.plot = lblArrivePlot.Text.ToString();
+                string data = DateTimePicker.Text;
 
                 GlobalVariables.arriveTime 
                     = 
@@ -39,12 +39,12 @@ namespace Projeto_Estacionamento
 
 
 
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox5.Clear();
-                textBox1.Focus();
-                textBox2.Focus();
-                textBox5.Focus();
+                lblArriveHour.Clear();
+                lblArriveMin.Clear();
+                lblArrivePlot.Clear();
+                lblArriveHour.Focus();
+                lblArriveMin.Focus();
+                lblArrivePlot.Focus();
             }
             catch (Exception er)
             {
@@ -59,10 +59,10 @@ namespace Projeto_Estacionamento
             {
                 foreach (var cars in Infocar.infocarsList)
                 {
-                    if (textBox6.Text.Equals(cars.Placa))
+                    if (lblLeftPlot.Text.Equals(cars.Placa))
                     {
-                        GlobalVariables.leftTimeHour = int.Parse(textBox3.Text);
-                        GlobalVariables.leftMin = int.Parse(textBox4.Text);
+                        GlobalVariables.leftTimeHour = int.Parse(lblLeftHour.Text);
+                        GlobalVariables.leftMin = int.Parse(lblLeftMin.Text);
                         GlobalVariables.leftHour
                             = 
                         new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.leftTimeHour, GlobalVariables.leftMin, 0);
@@ -109,12 +109,12 @@ namespace Projeto_Estacionamento
                     }
                 }
 
-                textBox3.Clear();
-                textBox4.Clear();
-                textBox6.Clear();
-                textBox3.Focus();
-                textBox4.Focus();
-                textBox6.Focus();
+                lblLeftHour.Clear();
+                lblLeftMin.Clear();
+                lblLeftPlot.Clear();
+                lblLeftHour.Focus();
+                lblLeftMin.Focus();
+                lblLeftPlot.Focus();
 
             }
             catch (Exception ex)
@@ -156,7 +156,7 @@ namespace Projeto_Estacionamento
 
             for (i = 0; i < Infocar.infocarsList.Count(); i++)
             {
-                if (textboxprocurar.Text == Infocar.infocarsList[i].Placa.ToString())
+                if (txtBoxGenerateCupon.Text == Infocar.infocarsList[i].Placa.ToString())
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.RestoreDirectory = true;
@@ -234,8 +234,8 @@ namespace Projeto_Estacionamento
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = Infocar.infocarsList;
 
-            textboxprocurar.Text = Infocar.infocarsList.Count().ToString();
-            textBox1.Focus();
+            txtBoxGenerateCupon.Text = Infocar.infocarsList.Count().ToString();
+            lblArriveHour.Focus();
         }
 
         private void novaToolStripButton_Click(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace Projeto_Estacionamento
 
         private void button7_Click(object sender, EventArgs e)
         {
-            textBox1.Text = Infocar.infocarsList.Count().ToString();
+            lblArriveHour.Text = Infocar.infocarsList.Count().ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -413,7 +413,7 @@ namespace Projeto_Estacionamento
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            textBox1.Text = Infocar.infocarsList.Count.ToString();
+            lblArriveHour.Text = Infocar.infocarsList.Count.ToString();
         }
     }
 }

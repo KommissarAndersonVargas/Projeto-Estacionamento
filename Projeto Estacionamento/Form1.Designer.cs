@@ -31,10 +31,10 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            lblArriveHour = new TextBox();
+            lblArriveMin = new TextBox();
+            lblLeftHour = new TextBox();
+            lblLeftMin = new TextBox();
             button1 = new Button();
             button2 = new Button();
             label2 = new Label();
@@ -43,10 +43,10 @@
             label6 = new Label();
             imageList1 = new ImageList(components);
             label9 = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            lblArrivePlot = new TextBox();
+            lblLeftPlot = new TextBox();
             label10 = new Label();
-            textboxprocurar = new TextBox();
+            txtBoxGenerateCupon = new TextBox();
             label11 = new Label();
             search = new Button();
             label12 = new Label();
@@ -74,7 +74,7 @@
             comboBox1 = new ComboBox();
             analise1 = new TextBox();
             label19 = new Label();
-            monthCalendar1 = new MonthCalendar();
+            Calendar = new MonthCalendar();
             label8 = new Label();
             label13 = new Label();
             openFileDialog1 = new OpenFileDialog();
@@ -83,7 +83,7 @@
             button7 = new Button();
             label16 = new Label();
             label5 = new Label();
-            DateTimePicker1 = new DateTimePicker();
+            DateTimePicker = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -102,34 +102,34 @@
             label1.TabIndex = 0;
             label1.Text = "Parking Lot Super";
             // 
-            // textBox1
+            // lblArriveHour
             // 
-            textBox1.Location = new Point(245, 218);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(61, 23);
-            textBox1.TabIndex = 1;
+            lblArriveHour.Location = new Point(245, 218);
+            lblArriveHour.Name = "lblArriveHour";
+            lblArriveHour.Size = new Size(61, 23);
+            lblArriveHour.TabIndex = 1;
             // 
-            // textBox2
+            // lblArriveMin
             // 
-            textBox2.Location = new Point(331, 218);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(61, 23);
-            textBox2.TabIndex = 2;
+            lblArriveMin.Location = new Point(331, 218);
+            lblArriveMin.Name = "lblArriveMin";
+            lblArriveMin.Size = new Size(61, 23);
+            lblArriveMin.TabIndex = 2;
             // 
-            // textBox3
+            // lblLeftHour
             // 
-            textBox3.Location = new Point(472, 218);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(61, 23);
-            textBox3.TabIndex = 3;
+            lblLeftHour.Location = new Point(472, 218);
+            lblLeftHour.Multiline = true;
+            lblLeftHour.Name = "lblLeftHour";
+            lblLeftHour.Size = new Size(61, 23);
+            lblLeftHour.TabIndex = 3;
             // 
-            // textBox4
+            // lblLeftMin
             // 
-            textBox4.Location = new Point(562, 218);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(61, 23);
-            textBox4.TabIndex = 4;
+            lblLeftMin.Location = new Point(562, 218);
+            lblLeftMin.Name = "lblLeftMin";
+            lblLeftMin.Size = new Size(61, 23);
+            lblLeftMin.TabIndex = 4;
             // 
             // button1
             // 
@@ -215,19 +215,19 @@
             label9.TabIndex = 18;
             label9.Text = "Placa";
             // 
-            // textBox5
+            // lblArrivePlot
             // 
-            textBox5.Location = new Point(245, 268);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(147, 23);
-            textBox5.TabIndex = 19;
+            lblArrivePlot.Location = new Point(245, 268);
+            lblArrivePlot.Name = "lblArrivePlot";
+            lblArrivePlot.Size = new Size(147, 23);
+            lblArrivePlot.TabIndex = 19;
             // 
-            // textBox6
+            // lblLeftPlot
             // 
-            textBox6.Location = new Point(472, 268);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(151, 23);
-            textBox6.TabIndex = 20;
+            lblLeftPlot.Location = new Point(472, 268);
+            lblLeftPlot.Name = "lblLeftPlot";
+            lblLeftPlot.Size = new Size(151, 23);
+            lblLeftPlot.TabIndex = 20;
             // 
             // label10
             // 
@@ -239,12 +239,12 @@
             label10.TabIndex = 21;
             label10.Text = "Placa";
             // 
-            // textboxprocurar
+            // txtBoxGenerateCupon
             // 
-            textboxprocurar.Location = new Point(761, 606);
-            textboxprocurar.Name = "textboxprocurar";
-            textboxprocurar.Size = new Size(475, 23);
-            textboxprocurar.TabIndex = 23;
+            txtBoxGenerateCupon.Location = new Point(761, 606);
+            txtBoxGenerateCupon.Name = "txtBoxGenerateCupon";
+            txtBoxGenerateCupon.Size = new Size(475, 23);
+            txtBoxGenerateCupon.TabIndex = 23;
             // 
             // label11
             // 
@@ -513,11 +513,11 @@
             label19.TabIndex = 43;
             label19.Text = "Análise";
             // 
-            // monthCalendar1
+            // Calendar
             // 
-            monthCalendar1.Location = new Point(228, 479);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 31;
+            Calendar.Location = new Point(228, 479);
+            Calendar.Name = "Calendar";
+            Calendar.TabIndex = 31;
             // 
             // label8
             // 
@@ -594,12 +594,12 @@
             label5.TabIndex = 41;
             label5.Text = ":";
             // 
-            // DateTimePicker1
+            // DateTimePicker
             // 
-            DateTimePicker1.Location = new Point(228, 446);
-            DateTimePicker1.Name = "DateTimePicker1";
-            DateTimePicker1.Size = new Size(227, 23);
-            DateTimePicker1.TabIndex = 42;
+            DateTimePicker.Location = new Point(228, 446);
+            DateTimePicker.Name = "DateTimePicker";
+            DateTimePicker.Size = new Size(227, 23);
+            DateTimePicker.TabIndex = 42;
             // 
             // Form1
             // 
@@ -607,27 +607,27 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(1370, 640);
-            Controls.Add(DateTimePicker1);
+            Controls.Add(DateTimePicker);
             Controls.Add(label5);
             Controls.Add(label16);
             Controls.Add(button7);
             Controls.Add(label15);
             Controls.Add(label14);
             Controls.Add(button3);
-            Controls.Add(monthCalendar1);
+            Controls.Add(Calendar);
             Controls.Add(label13);
             Controls.Add(txtSearchText);
             Controls.Add(label8);
             Controls.Add(search);
             Controls.Add(label11);
-            Controls.Add(textboxprocurar);
+            Controls.Add(txtBoxGenerateCupon);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Controls.Add(label12);
             Controls.Add(label10);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
+            Controls.Add(lblLeftPlot);
+            Controls.Add(lblArrivePlot);
             Controls.Add(label9);
             Controls.Add(label6);
             Controls.Add(label4);
@@ -635,10 +635,10 @@
             Controls.Add(label2);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(lblLeftMin);
+            Controls.Add(lblLeftHour);
+            Controls.Add(lblArriveMin);
+            Controls.Add(lblArriveHour);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
@@ -656,10 +656,10 @@
         }
 
         #endregion
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox lblArriveHour;
+        private TextBox lblArriveMin;
+        private TextBox lblLeftHour;
+        private TextBox lblLeftMin;
         private Button button1;
         private Button button2;
         private Label label2;
@@ -667,10 +667,10 @@
         private Label label4;
         private Label label6;
         private Label label9;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox lblArrivePlot;
+        private TextBox lblLeftPlot;
         private Label label10;
-        private TextBox textboxprocurar;
+        private TextBox txtBoxGenerateCupon;
         private Label label11;
         private Button search;
         private Label label12;
@@ -689,7 +689,7 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton ajudaToolStripButton;
         private Panel panel3;
-        private MonthCalendar monthCalendar1;
+        private MonthCalendar Calendar;
         private Label label8;
         private Label label13;
         private OpenFileDialog openFileDialog1;
@@ -709,6 +709,6 @@
         private Label label17;
         private Label label7;
         private Button button5;
-        private DateTimePicker DateTimePicker1;
+        private DateTimePicker DateTimePicker;
     }
 }
