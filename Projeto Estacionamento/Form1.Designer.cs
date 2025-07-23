@@ -67,6 +67,7 @@
             button3 = new Button();
             txtSearchText = new TextBox();
             panel3 = new Panel();
+            button5 = new Button();
             label17 = new Label();
             label7 = new Label();
             button8 = new Button();
@@ -82,7 +83,6 @@
             button7 = new Button();
             label16 = new Label();
             label5 = new Label();
-            button5 = new Button();
             DateTimePicker1 = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -271,7 +271,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(855, 166);
+            label12.Location = new Point(888, 166);
             label12.Name = "label12";
             label12.Size = new Size(287, 22);
             label12.TabIndex = 26;
@@ -283,7 +283,7 @@
             dataGridView1.Location = new Point(729, 191);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(544, 234);
+            dataGridView1.Size = new Size(579, 234);
             dataGridView1.TabIndex = 27;
             // 
             // panel1
@@ -443,6 +443,19 @@
             panel3.Size = new Size(199, 606);
             panel3.TabIndex = 29;
             // 
+            // button5
+            // 
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Image = Properties.Resources._12052490_suggestion_feedback_rating_review_negative_icon;
+            button5.ImageAlign = ContentAlignment.MiddleLeft;
+            button5.Location = new Point(10, 49);
+            button5.Name = "button5";
+            button5.Size = new Size(184, 74);
+            button5.TabIndex = 47;
+            button5.Text = "Avaliações";
+            button5.UseVisualStyleBackColor = true;
+            // 
             // label17
             // 
             label17.AutoSize = true;
@@ -555,7 +568,7 @@
             button7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             button7.Location = new Point(729, 431);
             button7.Name = "button7";
-            button7.Size = new Size(544, 38);
+            button7.Size = new Size(579, 38);
             button7.TabIndex = 39;
             button7.Text = "Deletar Item Selecionado";
             button7.UseVisualStyleBackColor = true;
@@ -580,19 +593,6 @@
             label5.Size = new Size(10, 15);
             label5.TabIndex = 41;
             label5.Text = ":";
-            // 
-            // button5
-            // 
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Image = Properties.Resources._12052490_suggestion_feedback_rating_review_negative_icon;
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(10, 49);
-            button5.Name = "button5";
-            button5.Size = new Size(184, 74);
-            button5.TabIndex = 47;
-            button5.Text = "Avaliações";
-            button5.UseVisualStyleBackColor = true;
             // 
             // DateTimePicker1
             // 

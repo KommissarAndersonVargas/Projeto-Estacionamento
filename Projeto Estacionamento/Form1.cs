@@ -16,18 +16,14 @@ namespace Projeto_Estacionamento
             InitializeComponent();
         }
 
-        public DateTime arriveTime;  // FUTURO: Inserir em uma classe para operações de DateTime
-        public DateTime leftHour; // FUTURO: Inserir em uma classe para operações de DateTime
-        public TimeSpan difference; // FUTURO: Inserir em uma classe para operações de DateTime
-        DateTime TimeNow = DateTime.Now; // FUTURO: Inserir em uma classe para operações de DateTime
         string plot;
         int arriveHour; // FUTURO: Inserir em uma classe para operações de DateTime
         int arriveMin; // FUTURO: Inserir em uma classe para operações de DateTime
         int leftTimeHour; // FUTURO: Inserir em uma classe para operações de DateTime
         int leftMin; // FUTURO: Inserir em uma classe para operações de DateTime
         BasicParkingLot car;
-        public List<TimeSpan> list = new List<TimeSpan>();
-        List<string> ls = new List<string>();
+        public List<TimeSpan> timeSpanList = new List<TimeSpan>();
+        List<string> filterValues = new List<string>();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -38,9 +34,10 @@ namespace Projeto_Estacionamento
                 plot = textBox5.Text.ToString();
                 string data = DateTimePicker1.Text;
 
-
-                arriveTime = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, arriveHour, arriveMin, 0);
-                DateTime HoraEntrada = arriveTime;
+                GlobalVariables.arriveTime 
+                    = 
+                new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, arriveHour, arriveMin, 0);
+                DateTime HoraEntrada = GlobalVariables.arriveTime;
 
                 car = InfocarSimpleFactory.CreateCar(plot, HoraEntrada, data, "ainda não calculado");
 
@@ -69,42 +66,43 @@ namespace Projeto_Estacionamento
         {
             try
             {
-
                 foreach (var cars in Infocar.infocarsList)
                 {
                     if (textBox6.Text.Equals(cars.Placa))
                     {
                         leftTimeHour = int.Parse(textBox3.Text);
                         leftMin = int.Parse(textBox4.Text);
-                        leftHour = new DateTime(TimeNow.Year, TimeNow.Month, TimeNow.Day, leftTimeHour, leftMin, 0);
-                        difference = leftHour.Subtract(cars.Time);
+                        GlobalVariables.leftHour
+                            = 
+                        new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, leftTimeHour, leftMin, 0);
+                        GlobalVariables.difference = GlobalVariables.leftHour.Subtract(cars.Time);
 
-                        cars.Tempo_Permanenica = difference.ToString();
+                        cars.Tempo_Permanenica = GlobalVariables.difference.ToString();
 
-                        if (difference.Hours > 0 && difference.Hours <= 1)
+                        if (GlobalVariables.difference.Hours > 0 && GlobalVariables.difference.Hours <= 1)
                         {
 
                             cars.TotalPagar = " Total a pagar 3 $";
 
                         }
-                        else if (difference.Hours > 1 && difference.Hours <= 2)
+                        else if (GlobalVariables.difference.Hours > 1 && GlobalVariables.difference.Hours <= 2)
                         {
 
                             cars.TotalPagar = " Total a pagar 5 $";
 
                         }
 
-                        else if (difference.Hours > 2 && difference.Hours <= 3)
+                        else if (GlobalVariables.difference.Hours > 2 && GlobalVariables.difference.Hours <= 3)
                         {
 
                             cars.TotalPagar = " Total a pagar 7 $";
                         }
-                        else if (difference.Hours > 3 && difference.Hours <= 4)
+                        else if (GlobalVariables.difference.Hours > 3 && GlobalVariables.difference.Hours <= 4)
                         {
 
                             cars.TotalPagar = " Total a pagar 10 $";
                         }
-                        else if (difference.Hours > 4 && difference.Hours <= 5)
+                        else if (GlobalVariables.difference.Hours > 4 && GlobalVariables.difference.Hours <= 5)
                         {
 
                             cars.TotalPagar = " Total a pagar 13 $";
@@ -138,8 +136,8 @@ namespace Projeto_Estacionamento
         {
             try
             {
-                difference = leftHour.Subtract(arriveTime);
-                list.Add(difference);
+                GlobalVariables.difference = GlobalVariables.leftHour.Subtract(GlobalVariables.arriveTime);
+                timeSpanList.Add(GlobalVariables.difference);
             }
             catch (Exception exce)
             {
@@ -382,49 +380,42 @@ namespace Projeto_Estacionamento
             }
         }
 
-        private DataGridView GetDataGridView1()
-        {
-            return dataGridView1;
-        }
-
-
         private void button8_Click_1(object sender, EventArgs e)
         {
-            //  "Tempo de Entrada: >\nTemplo de Entrada: <\nTempo de Entrada: ="
             if (comboBox1.Text == "Tempo de Entrada: >")
             {
-                if (ls.Count() != 0) { ls.Clear(); }
+                if (filterValues.Count() != 0) { filterValues.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
                 var res = Infocar.infocarsList.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
-                    ls.Add("Placa: " + a.ToString() + "\n");
+                    filterValues.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls, Infocar.infocarsList.Count());
+                Estati estati = new Estati(filterValues, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: <")
             {
-                if (ls.Count() != 0) { ls.Clear(); }
+                if (filterValues.Count() != 0) { filterValues.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
                 var res = Infocar.infocarsList.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
-                    ls.Add("Placa: " + a.ToString() + "\n");
+                    filterValues.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls, Infocar.infocarsList.Count());
+                Estati estati = new Estati(filterValues, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
             if (comboBox1.Text == "Tempo de Entrada: =")
             {
-                if (ls.Count() != 0) { ls.Clear(); }
+                if (filterValues.Count() != 0) { filterValues.Clear(); }
                 int ana1 = int.Parse(analise1.Text);
                 var res = Infocar.infocarsList.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
                 foreach (var a in res)
                 {
-                    ls.Add("Placa: " + a.ToString() + "\n");
+                    filterValues.Add("Placa: " + a.ToString() + "\n");
                 }
-                Estati estati = new Estati(ls, Infocar.infocarsList.Count());
+                Estati estati = new Estati(filterValues, Infocar.infocarsList.Count());
                 estati.ShowDialog();
             }
         }
