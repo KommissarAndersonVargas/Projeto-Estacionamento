@@ -37,14 +37,14 @@ namespace Projeto_Estacionamento
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = Infocar.infocarsList;
 
-                this.PrepareInputControls();
+                this.PrepareArriveInputControls();
             }
             catch (Exception er)
             {
                 MessageBox.Show("Error:" + er.ToString());
             }
         }
-        private void PrepareInputControls()
+        private void PrepareArriveInputControls()
         {
             lblArriveHour.Clear();
             lblArriveMin.Clear();
@@ -110,12 +110,7 @@ namespace Projeto_Estacionamento
                     }
                 }
 
-                lblLeftHour.Clear();
-                lblLeftMin.Clear();
-                lblLeftPlot.Clear();
-                lblLeftHour.Focus();
-                lblLeftMin.Focus();
-                lblLeftPlot.Focus();
+                this.PrepareExitInputControls();
 
             }
             catch (Exception ex)
@@ -124,7 +119,16 @@ namespace Projeto_Estacionamento
             }
         }
 
-       
+        private void PrepareExitInputControls()
+        {
+            lblLeftHour.Clear();
+            lblLeftMin.Clear();
+            lblLeftPlot.Clear();
+            lblLeftHour.Focus();
+            lblLeftMin.Focus();
+            lblLeftPlot.Focus();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             try
@@ -273,21 +277,41 @@ namespace Projeto_Estacionamento
             try
             {
                 dataGridView1.ClearSelection();
+                bool found = false;
+
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    MessageBox.Show("Digite uma placa para pesquisar.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    foreach (DataGridViewCell cell in row.Cells)
+                    if (row.IsNewRow) continue;
+
+                    if (row.Cells["Placa"].Value != null) 
                     {
-                        if (cell.Value.ToString().Contains(searchText))
+                        string placa = row.Cells["Placa"].Value.ToString().Trim();
+
+                        // Comparação exata (case-insensitive)
+                        if (placa.Equals(searchText, StringComparison.OrdinalIgnoreCase))
                         {
                             row.Selected = true;
-
+                            dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                            found = true;
+                            break; 
                         }
                     }
                 }
+
+                if (!found)
+                {
+                    MessageBox.Show($"Placa '{searchText}' não encontrada.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            catch (Exception ef)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ef.ToString());
+                MessageBox.Show($"Erro durante a busca: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
