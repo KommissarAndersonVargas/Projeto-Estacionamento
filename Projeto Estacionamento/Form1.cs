@@ -16,7 +16,7 @@ namespace Projeto_Estacionamento
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addsMainInfo_Click(object sender, EventArgs e)
         {
             try
             {
@@ -25,8 +25,8 @@ namespace Projeto_Estacionamento
                 GlobalVariables.plot = lblArrivePlot.Text.ToString();
                 string data = DateTimePicker.Text;
 
-                GlobalVariables.arriveTime 
-                    = 
+                GlobalVariables.arriveTime
+                    =
                 new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.arriveHour, GlobalVariables.arriveMin, 0);
                 DateTime HoraEntrada = GlobalVariables.arriveTime;
 
@@ -37,23 +37,24 @@ namespace Projeto_Estacionamento
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = Infocar.infocarsList;
 
-
-
-                lblArriveHour.Clear();
-                lblArriveMin.Clear();
-                lblArrivePlot.Clear();
-                lblArriveHour.Focus();
-                lblArriveMin.Focus();
-                lblArrivePlot.Focus();
+                this.PrepareInputControls();
             }
             catch (Exception er)
             {
                 MessageBox.Show("Error:" + er.ToString());
             }
-
+        }
+        private void PrepareInputControls()
+        {
+            lblArriveHour.Clear();
+            lblArriveMin.Clear();
+            lblArrivePlot.Clear();
+            lblArriveHour.Focus();
+            lblArriveMin.Focus();
+            lblArrivePlot.Focus();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void calculateHours_Click(object sender, EventArgs e)
         {
             try
             {
@@ -64,7 +65,7 @@ namespace Projeto_Estacionamento
                         GlobalVariables.leftTimeHour = int.Parse(lblLeftHour.Text);
                         GlobalVariables.leftMin = int.Parse(lblLeftMin.Text);
                         GlobalVariables.leftHour
-                            = 
+                            =
                         new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.leftTimeHour, GlobalVariables.leftMin, 0);
                         GlobalVariables.difference = GlobalVariables.leftHour.Subtract(cars.Time);
 
@@ -123,6 +124,7 @@ namespace Projeto_Estacionamento
             }
         }
 
+       
         private void button3_Click(object sender, EventArgs e)
         {
             try

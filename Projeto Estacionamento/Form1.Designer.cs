@@ -35,8 +35,6 @@
             lblArriveMin = new TextBox();
             lblLeftHour = new TextBox();
             lblLeftMin = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
@@ -84,6 +82,8 @@
             label16 = new Label();
             label5 = new Label();
             DateTimePicker = new DateTimePicker();
+            addsMainInfo = new Button();
+            calculateHours = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -130,28 +130,6 @@
             lblLeftMin.Name = "lblLeftMin";
             lblLeftMin.Size = new Size(61, 23);
             lblLeftMin.TabIndex = 4;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(245, 311);
-            button1.Name = "button1";
-            button1.Size = new Size(147, 31);
-            button1.TabIndex = 5;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(472, 311);
-            button2.Name = "button2";
-            button2.Size = new Size(155, 31);
-            button2.TabIndex = 6;
-            button2.Text = "Adicionar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // label2
             // 
@@ -601,12 +579,36 @@
             DateTimePicker.Size = new Size(227, 23);
             DateTimePicker.TabIndex = 42;
             // 
+            // addsMainInfo
+            // 
+            addsMainInfo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            addsMainInfo.Location = new Point(245, 311);
+            addsMainInfo.Name = "addsMainInfo";
+            addsMainInfo.Size = new Size(147, 31);
+            addsMainInfo.TabIndex = 43;
+            addsMainInfo.Text = "Registrar";
+            addsMainInfo.UseVisualStyleBackColor = true;
+            addsMainInfo.Click += addsMainInfo_Click;
+            // 
+            // calculateHours
+            // 
+            calculateHours.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            calculateHours.Location = new Point(472, 311);
+            calculateHours.Name = "calculateHours";
+            calculateHours.Size = new Size(151, 31);
+            calculateHours.TabIndex = 44;
+            calculateHours.Text = "Registrar";
+            calculateHours.UseVisualStyleBackColor = true;
+            calculateHours.Click += calculateHours_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(1370, 640);
+            Controls.Add(calculateHours);
+            Controls.Add(addsMainInfo);
             Controls.Add(DateTimePicker);
             Controls.Add(label5);
             Controls.Add(label16);
@@ -633,8 +635,6 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(lblLeftMin);
             Controls.Add(lblLeftHour);
             Controls.Add(lblArriveMin);
@@ -660,8 +660,6 @@
         private TextBox lblArriveMin;
         private TextBox lblLeftHour;
         private TextBox lblLeftMin;
-        private Button button1;
-        private Button button2;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -710,5 +708,7 @@
         private Label label7;
         private Button button5;
         private DateTimePicker DateTimePicker;
+        private Button addsMainInfo;
+        private Button calculateHours;
     }
 }
