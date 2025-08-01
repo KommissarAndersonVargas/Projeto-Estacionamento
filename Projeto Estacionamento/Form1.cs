@@ -20,9 +20,9 @@ namespace Projeto_Estacionamento
         {
             try
             {
-                GlobalVariables.arriveHour = int.Parse(lblArriveHour.Text);
-                GlobalVariables.arriveMin = int.Parse(lblArriveMin.Text);
-                GlobalVariables.plot = lblArrivePlot.Text.ToString();
+                GlobalVariables.arriveHour = int.Parse(txtbArriveHour.Text);
+                GlobalVariables.arriveMin = int.Parse(txtbArriveMin.Text);
+                GlobalVariables.plot = txtbrrivePlot.Text.ToString();
                 string data = DateTimePicker.Text;
 
                 GlobalVariables.arriveTime
@@ -46,12 +46,12 @@ namespace Projeto_Estacionamento
         }
         private void PrepareArriveInputControls()
         {
-            lblArriveHour.Clear();
-            lblArriveMin.Clear();
-            lblArrivePlot.Clear();
-            lblArriveHour.Focus();
-            lblArriveMin.Focus();
-            lblArrivePlot.Focus();
+            txtbArriveHour.Clear();
+            txtbArriveMin.Clear();
+            txtbrrivePlot.Clear();
+            txtbArriveHour.Focus();
+            txtbArriveMin.Focus();
+            txtbrrivePlot.Focus();
         }
 
         private void calculateHours_Click(object sender, EventArgs e)
@@ -60,10 +60,10 @@ namespace Projeto_Estacionamento
             {
                 foreach (var cars in Infocar.infocarsList)
                 {
-                    if (lblLeftPlot.Text.Equals(cars.Placa))
+                    if (txtbLeftPlot.Text.Equals(cars.Placa))
                     {
-                        GlobalVariables.leftTimeHour = int.Parse(lblLeftHour.Text);
-                        GlobalVariables.leftMin = int.Parse(lblLeftMin.Text);
+                        GlobalVariables.leftTimeHour = int.Parse(txtbLeftHour.Text);
+                        GlobalVariables.leftMin = int.Parse(txtbLeftMin.Text);
                         GlobalVariables.leftHour
                             =
                         new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.leftTimeHour, GlobalVariables.leftMin, 0);
@@ -71,39 +71,7 @@ namespace Projeto_Estacionamento
 
                         cars.Tempo_Permanenica = GlobalVariables.difference.ToString();
 
-                        if (GlobalVariables.difference.Hours > 0 && GlobalVariables.difference.Hours <= 1)
-                        {
-
-                            cars.TotalPagar = " Total a pagar 3 $";
-
-                        }
-                        else if (GlobalVariables.difference.Hours > 1 && GlobalVariables.difference.Hours <= 2)
-                        {
-
-                            cars.TotalPagar = " Total a pagar 5 $";
-
-                        }
-
-                        else if (GlobalVariables.difference.Hours > 2 && GlobalVariables.difference.Hours <= 3)
-                        {
-
-                            cars.TotalPagar = " Total a pagar 7 $";
-                        }
-                        else if (GlobalVariables.difference.Hours > 3 && GlobalVariables.difference.Hours <= 4)
-                        {
-
-                            cars.TotalPagar = " Total a pagar 10 $";
-                        }
-                        else if (GlobalVariables.difference.Hours > 4 && GlobalVariables.difference.Hours <= 5)
-                        {
-
-                            cars.TotalPagar = " Total a pagar 13 $";
-                        }
-                        else
-                        {
-
-                            cars.TotalPagar = " Total a pagar 20 $";
-                        }
+                        Infocar.PaymentLogic(cars);
 
                         dataGridView1.DataSource = null;
                         dataGridView1.DataSource = Infocar.infocarsList;
@@ -111,7 +79,6 @@ namespace Projeto_Estacionamento
                 }
 
                 this.PrepareExitInputControls();
-
             }
             catch (Exception ex)
             {
@@ -121,12 +88,12 @@ namespace Projeto_Estacionamento
 
         private void PrepareExitInputControls()
         {
-            lblLeftHour.Clear();
-            lblLeftMin.Clear();
-            lblLeftPlot.Clear();
-            lblLeftHour.Focus();
-            lblLeftMin.Focus();
-            lblLeftPlot.Focus();
+            txtbLeftHour.Clear();
+            txtbLeftMin.Clear();
+            txtbLeftPlot.Clear();
+            txtbLeftHour.Focus();
+            txtbLeftMin.Focus();
+            txtbLeftPlot.Focus();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -234,24 +201,30 @@ namespace Projeto_Estacionamento
 
         private void abrirToolStripButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Infocar.infocarsList = Desserialization();
 
-            Infocar.infocarsList = Desserialization();
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Infocar.infocarsList;
 
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = Infocar.infocarsList;
-
-            txtBoxGenerateCupon.Text = Infocar.infocarsList.Count().ToString();
-            lblArriveHour.Focus();
+                txtBoxGenerateCupon.Text = Infocar.infocarsList.Count().ToString();
+                txtbArriveHour.Focus();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void novaToolStripButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcao nao aplicavel");
+            MessageBox.Show("Funcao não aplicavel", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void colarToolStripButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcao nao aplicavel");
+            MessageBox.Show("Funcao não aplicavel", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ajudaToolStripButton_Click(object sender, EventArgs e)
@@ -263,7 +236,7 @@ namespace Projeto_Estacionamento
 
         private void button7_Click(object sender, EventArgs e)
         {
-            lblArriveHour.Text = Infocar.infocarsList.Count().ToString();
+            txtbArriveHour.Text = Infocar.infocarsList.Count().ToString();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -439,7 +412,7 @@ namespace Projeto_Estacionamento
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            lblArriveHour.Text = Infocar.infocarsList.Count.ToString();
+            txtbArriveHour.Text = Infocar.infocarsList.Count.ToString();
         }
     }
 }

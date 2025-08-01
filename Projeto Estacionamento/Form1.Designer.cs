@@ -31,18 +31,18 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
-            lblArriveHour = new TextBox();
-            lblArriveMin = new TextBox();
-            lblLeftHour = new TextBox();
-            lblLeftMin = new TextBox();
+            txtbArriveHour = new TextBox();
+            txtbArriveMin = new TextBox();
+            txtbLeftHour = new TextBox();
+            txtbLeftMin = new TextBox();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label6 = new Label();
             imageList1 = new ImageList(components);
             label9 = new Label();
-            lblArrivePlot = new TextBox();
-            lblLeftPlot = new TextBox();
+            txtbrrivePlot = new TextBox();
+            txtbLeftPlot = new TextBox();
             label10 = new Label();
             txtBoxGenerateCupon = new TextBox();
             label11 = new Label();
@@ -102,34 +102,34 @@
             label1.TabIndex = 0;
             label1.Text = "Parking Lot Super";
             // 
-            // lblArriveHour
+            // txtbArriveHour
             // 
-            lblArriveHour.Location = new Point(245, 218);
-            lblArriveHour.Name = "lblArriveHour";
-            lblArriveHour.Size = new Size(61, 23);
-            lblArriveHour.TabIndex = 1;
+            txtbArriveHour.Location = new Point(245, 218);
+            txtbArriveHour.Name = "txtbArriveHour";
+            txtbArriveHour.Size = new Size(61, 23);
+            txtbArriveHour.TabIndex = 1;
             // 
-            // lblArriveMin
+            // txtbArriveMin
             // 
-            lblArriveMin.Location = new Point(331, 218);
-            lblArriveMin.Name = "lblArriveMin";
-            lblArriveMin.Size = new Size(61, 23);
-            lblArriveMin.TabIndex = 2;
+            txtbArriveMin.Location = new Point(331, 218);
+            txtbArriveMin.Name = "txtbArriveMin";
+            txtbArriveMin.Size = new Size(61, 23);
+            txtbArriveMin.TabIndex = 2;
             // 
-            // lblLeftHour
+            // txtbLeftHour
             // 
-            lblLeftHour.Location = new Point(472, 218);
-            lblLeftHour.Multiline = true;
-            lblLeftHour.Name = "lblLeftHour";
-            lblLeftHour.Size = new Size(61, 23);
-            lblLeftHour.TabIndex = 3;
+            txtbLeftHour.Location = new Point(472, 218);
+            txtbLeftHour.Multiline = true;
+            txtbLeftHour.Name = "txtbLeftHour";
+            txtbLeftHour.Size = new Size(61, 23);
+            txtbLeftHour.TabIndex = 3;
             // 
-            // lblLeftMin
+            // txtbLeftMin
             // 
-            lblLeftMin.Location = new Point(562, 218);
-            lblLeftMin.Name = "lblLeftMin";
-            lblLeftMin.Size = new Size(61, 23);
-            lblLeftMin.TabIndex = 4;
+            txtbLeftMin.Location = new Point(562, 218);
+            txtbLeftMin.Name = "txtbLeftMin";
+            txtbLeftMin.Size = new Size(61, 23);
+            txtbLeftMin.TabIndex = 4;
             // 
             // label2
             // 
@@ -193,19 +193,19 @@
             label9.TabIndex = 18;
             label9.Text = "Placa";
             // 
-            // lblArrivePlot
+            // txtbrrivePlot
             // 
-            lblArrivePlot.Location = new Point(245, 268);
-            lblArrivePlot.Name = "lblArrivePlot";
-            lblArrivePlot.Size = new Size(147, 23);
-            lblArrivePlot.TabIndex = 19;
+            txtbrrivePlot.Location = new Point(245, 268);
+            txtbrrivePlot.Name = "txtbrrivePlot";
+            txtbrrivePlot.Size = new Size(147, 23);
+            txtbrrivePlot.TabIndex = 19;
             // 
-            // lblLeftPlot
+            // txtbLeftPlot
             // 
-            lblLeftPlot.Location = new Point(472, 268);
-            lblLeftPlot.Name = "lblLeftPlot";
-            lblLeftPlot.Size = new Size(151, 23);
-            lblLeftPlot.TabIndex = 20;
+            txtbLeftPlot.Location = new Point(472, 268);
+            txtbLeftPlot.Name = "txtbLeftPlot";
+            txtbLeftPlot.Size = new Size(151, 23);
+            txtbLeftPlot.TabIndex = 20;
             // 
             // label10
             // 
@@ -628,17 +628,17 @@
             Controls.Add(dataGridView1);
             Controls.Add(label12);
             Controls.Add(label10);
-            Controls.Add(lblLeftPlot);
-            Controls.Add(lblArrivePlot);
+            Controls.Add(txtbLeftPlot);
+            Controls.Add(txtbrrivePlot);
             Controls.Add(label9);
             Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(lblLeftMin);
-            Controls.Add(lblLeftHour);
-            Controls.Add(lblArriveMin);
-            Controls.Add(lblArriveHour);
+            Controls.Add(txtbLeftMin);
+            Controls.Add(txtbLeftHour);
+            Controls.Add(txtbArriveMin);
+            Controls.Add(txtbArriveHour);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
@@ -656,17 +656,17 @@
         }
 
         #endregion
-        private TextBox lblArriveHour;
-        private TextBox lblArriveMin;
-        private TextBox lblLeftHour;
-        private TextBox lblLeftMin;
+        private TextBox txtbArriveHour;
+        private TextBox txtbArriveMin;
+        private TextBox txtbLeftHour;
+        private TextBox txtbLeftMin;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label6;
         private Label label9;
-        private TextBox lblArrivePlot;
-        private TextBox lblLeftPlot;
+        private TextBox txtbrrivePlot;
+        private TextBox txtbLeftPlot;
         private Label label10;
         private TextBox txtBoxGenerateCupon;
         private Label label11;
