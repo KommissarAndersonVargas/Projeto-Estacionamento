@@ -5,12 +5,12 @@ using System.Data;
 using System.ComponentModel;
 using Projeto_Estacionamento.Classes;
 using Projeto_Estacionamento.Factory;
+using Projeto_Estacionamento.AboutForm;
 
 namespace Projeto_Estacionamento
 {
     public partial class Form1 : Form
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -39,9 +39,9 @@ namespace Projeto_Estacionamento
 
                 this.PrepareArriveInputControls();
             }
-            catch (Exception er)
+            catch (Exception)
             {
-                MessageBox.Show("Error:" + er.ToString());
+                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void PrepareArriveInputControls()
@@ -80,9 +80,9 @@ namespace Projeto_Estacionamento
 
                 this.PrepareExitInputControls();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro: \n" + ex.ToString());
+                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -103,9 +103,9 @@ namespace Projeto_Estacionamento
                 GlobalVariables.difference = GlobalVariables.leftHour.Subtract(GlobalVariables.arriveTime);
                 GlobalVariables.timeSpanList.Add(GlobalVariables.difference);
             }
-            catch (Exception exce)
+            catch (Exception)
             {
-                MessageBox.Show("Error: \n\n " + exce.ToString());
+                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -176,7 +176,7 @@ namespace Projeto_Estacionamento
                         doc.Open();
                         doc.Add(paragrafo);
                         doc.Close();
-                        MessageBox.Show("Arquivo gerado com sucesso");
+                        MessageBox.Show("Arquivo gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                 }
@@ -229,9 +229,8 @@ namespace Projeto_Estacionamento
 
         private void ajudaToolStripButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("O seguinte programa refere-se a um sistema de estacionamento\n" +
-                "com registro de veiculos e geracao de cupons alem de funcoes \n" +
-                "exclusivas do operador");
+            AboutFormParkingLot aboutForm = new AboutFormParkingLot();
+            aboutForm.ShowDialog();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -413,6 +412,7 @@ namespace Projeto_Estacionamento
         private void button7_Click_1(object sender, EventArgs e)
         {
             txtbArriveHour.Text = Infocar.infocarsList.Count.ToString();
+            //FUTURO
         }
     }
 }

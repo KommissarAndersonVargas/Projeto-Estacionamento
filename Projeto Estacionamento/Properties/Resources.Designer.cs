@@ -119,5 +119,15 @@ namespace Projeto_Estacionamento.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap parking_lot_banner {
+            get {
+                object obj = ResourceManager.GetObject("parking-lot-banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
