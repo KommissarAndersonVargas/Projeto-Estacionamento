@@ -125,62 +125,7 @@ namespace Projeto_Estacionamento
 
         private void search_Click(object sender, EventArgs e)
         {
-            int i;
-
-            for (i = 0; i < Infocar.infocarsList.Count(); i++)
-            {
-                if (txtBoxGenerateCupon.Text == Infocar.infocarsList[i].Placa.ToString())
-                {
-                    SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    saveFileDialog.RestoreDirectory = true;
-                    saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
-                    saveFileDialog.FilterIndex = 2;
-
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        string path = saveFileDialog.FileName;
-                        FileStream arquivoPDF = new FileStream(path, FileMode.Create);
-                        Document doc = new Document(PageSize.A4);
-                        PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
-
-                        string dados = "";
-                        Paragraph paragrafo = new Paragraph(dados, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14, (int)System.Drawing.FontStyle.Bold));
-                        paragrafo.Alignment = Element.ALIGN_CENTER;
-                        paragrafo.Add("Parking Lot Super\n");
-
-                        paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                        paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("\n");
-
-                        paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                        paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Data: " + Infocar.infocarsList[i].Data + "\n");
-
-                        paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                        paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Placa: " + Infocar.infocarsList[i].Placa + "\n");
-
-                        paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                        paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("Horario de entrada: " + Infocar.infocarsList[i].Time.Hour + ":" + Infocar.infocarsList[i].Time.Minute + "\n");
-
-
-                        paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                        paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add("\n");
-
-                        paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 10, (int)System.Drawing.FontStyle.Italic);
-                        paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                        paragrafo.Add(" Parking lot Super System �");
-
-                        doc.Open();
-                        doc.Add(paragrafo);
-                        doc.Close();
-                        MessageBox.Show("Arquivo gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        break;
-                    }
-                }
-            }
+            Infocar.PrintOneTicket(txtBoxGenerateCupon.Text);
         }
 
         private void salvarToolStripButton_Click(object sender, EventArgs e)
@@ -289,68 +234,7 @@ namespace Projeto_Estacionamento
 
         private void imprimirToolStripButton_Click(object sender, EventArgs e)
         {
-
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
-            saveFileDialog.FilterIndex = 2;
-            saveFileDialog.RestoreDirectory = true;
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-
-                FileStream arquivoPDF = new FileStream(saveFileDialog.FileName, FileMode.Create);
-                Document doc = new Document(PageSize.A4);
-                PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
-                string dados = "";
-                Paragraph paragrafo = new Paragraph(dados, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 20, (int)System.Drawing.FontStyle.Bold));
-                paragrafo.Alignment = Element.ALIGN_CENTER;
-                paragrafo.Add("Registro de Veiculos do Sistema\n\n");
-
-                int i;
-                for (i = 0; i < Infocar.infocarsList.Count(); i++)
-                {
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14, (int)System.Drawing.FontStyle.Bold);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Parking Lot Super\n");
-
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("\n");
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Data: " + Infocar.infocarsList[i].Data + "\n");
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Placa: " + Infocar.infocarsList[i].Placa + "\n");
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Horario de entrada: " + Infocar.infocarsList[i].Time.Hour + ":" + Infocar.infocarsList[i].Time.Minute + "\n");
-
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("Tempo de permanencia: " + Infocar.infocarsList[i].Tempo_Permanenica + "\n");
-
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12, (int)System.Drawing.FontStyle.Regular);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add("\n");
-
-                    paragrafo.Font = new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 10, (int)System.Drawing.FontStyle.Italic);
-                    paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
-                    paragrafo.Add(" Parking lot Super System � \n\n");
-
-                }
-                doc.Open();
-                doc.Add(paragrafo);
-                doc.Close();
-                MessageBox.Show("Registro gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            Infocar.PrintAllCarsInSystem();
         }
 
         static BindingList<Infocar> Desserialization()
@@ -371,41 +255,47 @@ namespace Projeto_Estacionamento
 
         private void button8_Click_1(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "Tempo de Entrada: >")
+            if (comboBox1.Text.Equals("Tempo de Entrada: >"))
             {
                 if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
-                int ana1 = int.Parse(analise1.Text);
-                var res = Infocar.infocarsList.Where(x => x.Time.Hour > ana1).Select(x => x.Placa);
-                foreach (var a in res)
+                int selection = int.Parse(analise1.Text);
+                var result = Infocar.infocarsList.Where(info => info.Time.Hour > selection).Select(info => info.Placa);
+                foreach (var selectedInfo in result)
                 {
-                    GlobalVariables.filterValues.Add("Placa: " + a.ToString() + "\n");
+                    GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
                 }
-                Estati estati = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                estati.ShowDialog();
+                Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                staticsForm.ShowDialog();
             }
-            if (comboBox1.Text == "Tempo de Entrada: <")
+            if (comboBox1.Text.Equals("Tempo de Entrada: <"))
             {
                 if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
-                int ana1 = int.Parse(analise1.Text);
-                var res = Infocar.infocarsList.Where(x => x.Time.Hour < ana1).Select(x => x.Placa);
-                foreach (var a in res)
+                int selection = int.Parse(analise1.Text);
+                var result = Infocar.infocarsList
+                    .Where(info => info.Time.Hour < selection)
+                    .Select(info => info.Placa);
+
+                foreach (var selectedInfo in result)
                 {
-                    GlobalVariables.filterValues.Add("Placa: " + a.ToString() + "\n");
+                    GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
                 }
-                Estati estati = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                estati.ShowDialog();
+                Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                staticsForm.ShowDialog();
             }
-            if (comboBox1.Text == "Tempo de Entrada: =")
+            if (comboBox1.Text.Equals("Tempo de Entrada: ="))
             {
-                if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
-                int ana1 = int.Parse(analise1.Text);
-                var res = Infocar.infocarsList.Where(x => x.Time.Hour == ana1).Select(x => x.Placa);
-                foreach (var a in res)
+                if (GlobalVariables.filterValues.Count() != 0) {GlobalVariables.filterValues.Clear();}
+                int selection = int.Parse(analise1.Text);
+                var result = Infocar.infocarsList
+                    .Where(info => info.Time.Hour.Equals(selection))
+                    .Select(info => info.Placa);
+
+                foreach (var selectedInfo in result)
                 {
-                    GlobalVariables.filterValues.Add("Placa: " + a.ToString() + "\n");
+                    GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
                 }
-                Estati estati = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                estati.ShowDialog();
+                Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                staticsForm.ShowDialog();
             }
         }
 
