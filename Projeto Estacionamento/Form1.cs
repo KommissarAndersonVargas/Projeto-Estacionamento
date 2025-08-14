@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Projeto_Estacionamento.Classes;
 using Projeto_Estacionamento.Factory;
 using Projeto_Estacionamento.AboutForm;
+using Projeto_Estacionamento.Controls;
 
 namespace Projeto_Estacionamento
 {
@@ -17,110 +18,13 @@ namespace Projeto_Estacionamento
         }
 
         private void addsMainInfo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GlobalVariables.arriveHour = int.Parse(txtbArriveHour.Text);
-                GlobalVariables.arriveMin = int.Parse(txtbArriveMin.Text);
-                GlobalVariables.plot = txtbrrivePlot.Text.ToString();
-                string data = DateTimePicker.Text;
-
-                GlobalVariables.arriveTime
-                    =
-                new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.arriveHour, GlobalVariables.arriveMin, 0);
-                DateTime HoraEntrada = GlobalVariables.arriveTime;
-
-                GlobalVariables.car = InfocarSimpleFactory.CreateCar(GlobalVariables.plot, HoraEntrada, data, "ainda não calculado");
-
-                Infocar.infocarsList.Add((Infocar)GlobalVariables.car);
-
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = Infocar.infocarsList;
-
-                this.PrepareArriveInputControls();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        {  
+            ControlsOperations.AddsInputInformation(txtbArriveHour, txtbArriveMin, txtbrrivePlot, DateTimePicker, dataGridView1);
         }
-        private void PrepareArriveInputControls()
-        {
-            txtbArriveHour.Clear();
-            txtbArriveMin.Clear();
-            txtbrrivePlot.Clear();
-            txtbArriveHour.Focus();
-            txtbArriveMin.Focus();
-            txtbrrivePlot.Focus();
-        }
-
+       
         private void calculateHours_Click(object sender, EventArgs e)
         {
-            try
-            {
-                foreach (var cars in Infocar.infocarsList)
-                {
-                    if (txtbLeftPlot.Text.Equals(cars.Placa))
-                    {
-                        GlobalVariables.leftTimeHour = int.Parse(txtbLeftHour.Text);
-                        GlobalVariables.leftMin = int.Parse(txtbLeftMin.Text);
-                        GlobalVariables.leftHour
-                            =
-                        new DateTime(GlobalVariables.TimeNow.Year, GlobalVariables.TimeNow.Month, GlobalVariables.TimeNow.Day, GlobalVariables.leftTimeHour, GlobalVariables.leftMin, 0);
-                        GlobalVariables.difference = GlobalVariables.leftHour.Subtract(cars.Time);
-
-                        cars.Tempo_Permanenica = GlobalVariables.difference.ToString();
-
-                        Infocar.PaymentLogic(cars);
-
-                        dataGridView1.DataSource = null;
-                        dataGridView1.DataSource = Infocar.infocarsList;
-                    }
-                }
-
-                this.PrepareExitInputControls();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void PrepareExitInputControls()
-        {
-            txtbLeftHour.Clear();
-            txtbLeftMin.Clear();
-            txtbLeftPlot.Clear();
-            txtbLeftHour.Focus();
-            txtbLeftMin.Focus();
-            txtbLeftPlot.Focus();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GlobalVariables.difference = GlobalVariables.leftHour.Subtract(GlobalVariables.arriveTime);
-                GlobalVariables.timeSpanList.Add(GlobalVariables.difference);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Registro_de_Veiculos registro_De_Veiculos = new Registro_de_Veiculos();
-                registro_De_Veiculos.ShowDialog();
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show("Erro: \n\n" + er.ToString());
-            }
+            ControlsOperations.CalculateHours(txtbLeftPlot, txtbLeftHour, txtbLeftMin, dataGridView1);
         }
 
         private void search_Click(object sender, EventArgs e)
@@ -156,7 +60,7 @@ namespace Projeto_Estacionamento
                 txtBoxGenerateCupon.Text = Infocar.infocarsList.Count().ToString();
                 txtbArriveHour.Focus();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -206,7 +110,7 @@ namespace Projeto_Estacionamento
                 {
                     if (row.IsNewRow) continue;
 
-                    if (row.Cells["Placa"].Value != null) 
+                    if (row.Cells["Placa"].Value != null)
                     {
                         string placa = row.Cells["Placa"].Value.ToString().Trim();
 
@@ -216,7 +120,7 @@ namespace Projeto_Estacionamento
                             row.Selected = true;
                             dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
                             found = true;
-                            break; 
+                            break;
                         }
                     }
                 }
@@ -255,47 +159,54 @@ namespace Projeto_Estacionamento
 
         private void button8_Click_1(object sender, EventArgs e)
         {
-            if (comboBox1.Text.Equals("Tempo de Entrada: >"))
+            try
             {
-                if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
-                int selection = int.Parse(analise1.Text);
-                var result = Infocar.infocarsList.Where(info => info.Time.Hour > selection).Select(info => info.Placa);
-                foreach (var selectedInfo in result)
+                if (comboBox1.Text.Equals("Tempo de Entrada: >"))
                 {
-                    GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
+                    int selection = int.Parse(analise1.Text);
+                    var result = Infocar.infocarsList.Where(info => info.Time.Hour > selection).Select(info => info.Placa);
+                    foreach (var selectedInfo in result)
+                    {
+                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    }
+                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                    staticsForm.ShowDialog();
                 }
-                Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                staticsForm.ShowDialog();
-            }
-            if (comboBox1.Text.Equals("Tempo de Entrada: <"))
-            {
-                if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
-                int selection = int.Parse(analise1.Text);
-                var result = Infocar.infocarsList
-                    .Where(info => info.Time.Hour < selection)
-                    .Select(info => info.Placa);
+                if (comboBox1.Text.Equals("Tempo de Entrada: <"))
+                {
+                    if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
+                    int selection = int.Parse(analise1.Text);
+                    var result = Infocar.infocarsList
+                        .Where(info => info.Time.Hour < selection)
+                        .Select(info => info.Placa);
 
-                foreach (var selectedInfo in result)
-                {
-                    GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    foreach (var selectedInfo in result)
+                    {
+                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    }
+                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                    staticsForm.ShowDialog();
                 }
-                Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                staticsForm.ShowDialog();
-            }
-            if (comboBox1.Text.Equals("Tempo de Entrada: ="))
-            {
-                if (GlobalVariables.filterValues.Count() != 0) {GlobalVariables.filterValues.Clear();}
-                int selection = int.Parse(analise1.Text);
-                var result = Infocar.infocarsList
-                    .Where(info => info.Time.Hour.Equals(selection))
-                    .Select(info => info.Placa);
+                if (comboBox1.Text.Equals("Tempo de Entrada: ="))
+                {
+                    if (GlobalVariables.filterValues.Count() != 0) { GlobalVariables.filterValues.Clear(); }
+                    int selection = int.Parse(analise1.Text);
+                    var result = Infocar.infocarsList
+                        .Where(info => info.Time.Hour.Equals(selection))
+                        .Select(info => info.Placa);
 
-                foreach (var selectedInfo in result)
-                {
-                    GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    foreach (var selectedInfo in result)
+                    {
+                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    }
+                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                    staticsForm.ShowDialog();
                 }
-                Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                staticsForm.ShowDialog();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
