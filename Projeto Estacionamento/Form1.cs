@@ -34,36 +34,12 @@ namespace Projeto_Estacionamento
 
         private void salvarToolStripButton_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string jsonString = System.Text.Json.JsonSerializer.Serialize(Infocar.infocarsList);
-                    File.WriteAllText(saveFileDialog.FileName, jsonString);
-
-                    MessageBox.Show("Arquivo salvo com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            ControlsOperations.SaveFile();
         }
 
         private void abrirToolStripButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Infocar.infocarsList = Desserialization();
-
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = Infocar.infocarsList;
-
-                txtBoxGenerateCupon.Text = Infocar.infocarsList.Count().ToString();
-                txtbArriveHour.Focus();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ControlsOperations.OpenFile(dataGridView1);
         }
 
         private void novaToolStripButton_Click(object sender, EventArgs e)
@@ -89,72 +65,12 @@ namespace Projeto_Estacionamento
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            SearchInDataGrid(txtSearchText.Text);
-        }
-
-
-        private void SearchInDataGrid(string searchText)
-        {
-            try
-            {
-                dataGridView1.ClearSelection();
-                bool found = false;
-
-                if (string.IsNullOrWhiteSpace(searchText))
-                {
-                    MessageBox.Show("Digite uma placa para pesquisar.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    if (row.Cells["Placa"].Value != null)
-                    {
-                        string placa = row.Cells["Placa"].Value.ToString().Trim();
-
-                        // Comparação exata (case-insensitive)
-                        if (placa.Equals(searchText, StringComparison.OrdinalIgnoreCase))
-                        {
-                            row.Selected = true;
-                            dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!found)
-                {
-                    MessageBox.Show($"Placa '{searchText}' não encontrada.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro durante a busca: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ControlsOperations.SearchInDataGrid(txtSearchText.Text, dataGridView1);
         }
 
         private void imprimirToolStripButton_Click(object sender, EventArgs e)
         {
             Infocar.PrintAllCarsInSystem();
-        }
-
-        static BindingList<Infocar> Desserialization()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Arquivos JSON (*.json)|*.json";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                var car = JsonConvert.DeserializeObject<BindingList<Infocar>>(File.ReadAllText(openFileDialog.FileName));
-                return car;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         private void button8_Click_1(object sender, EventArgs e)
@@ -213,7 +129,7 @@ namespace Projeto_Estacionamento
         private void button7_Click_1(object sender, EventArgs e)
         {
             txtbArriveHour.Text = Infocar.infocarsList.Count.ToString();
-            //FUTURO
+            //FUTURO BOTAO DE EXCLUIR
         }
     }
 }
