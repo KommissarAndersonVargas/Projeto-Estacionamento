@@ -64,14 +64,12 @@
             button4 = new Button();
             button3 = new Button();
             txtSearchText = new TextBox();
-            panel3 = new Panel();
-            button5 = new Button();
-            label17 = new Label();
+            manuPanel = new Panel();
+            comboBoxFilter = new ComboBox();
             label7 = new Label();
             button8 = new Button();
-            comboBox1 = new ComboBox();
-            analise1 = new TextBox();
-            label19 = new Label();
+            label17 = new Label();
+            analise = new TextBox();
             Calendar = new MonthCalendar();
             label8 = new Label();
             label13 = new Label();
@@ -87,7 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             toolStrip1.SuspendLayout();
-            panel3.SuspendLayout();
+            manuPanel.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -266,10 +264,9 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.HotTrack;
+            panel1.BackColor = SystemColors.ControlDarkDark;
             panel1.Controls.Add(toolStrip1);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(button4);
             panel1.Location = new Point(-2, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(1374, 144);
@@ -380,9 +377,9 @@
             button4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             button4.Image = Properties.Resources._9043885_automatic_icon;
             button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(9, 60);
+            button4.Location = new Point(5, 6);
             button4.Name = "button4";
-            button4.Size = new Size(185, 74);
+            button4.Size = new Size(191, 74);
             button4.TabIndex = 46;
             button4.Text = "Parking Lot Automatic";
             button4.TextAlign = ContentAlignment.MiddleRight;
@@ -406,49 +403,35 @@
             txtSearchText.Size = new Size(475, 23);
             txtSearchText.TabIndex = 36;
             // 
-            // panel3
+            // manuPanel
             // 
-            panel3.BackColor = SystemColors.HotTrack;
-            panel3.Controls.Add(button5);
-            panel3.Controls.Add(label17);
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(button8);
-            panel3.Controls.Add(comboBox1);
-            panel3.Controls.Add(analise1);
-            panel3.Controls.Add(label19);
-            panel3.Location = new Point(-2, 142);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(199, 606);
-            panel3.TabIndex = 29;
+            manuPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            manuPanel.BackColor = SystemColors.ControlDarkDark;
+            manuPanel.Controls.Add(comboBoxFilter);
+            manuPanel.Controls.Add(label7);
+            manuPanel.Controls.Add(button8);
+            manuPanel.Controls.Add(label17);
+            manuPanel.Controls.Add(button4);
+            manuPanel.Controls.Add(analise);
+            manuPanel.Location = new Point(-2, 142);
+            manuPanel.Name = "manuPanel";
+            manuPanel.Size = new Size(199, 501);
+            manuPanel.TabIndex = 29;
             // 
-            // button5
+            // comboBoxFilter
             // 
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Image = Properties.Resources._12052490_suggestion_feedback_rating_review_negative_icon;
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(10, 49);
-            button5.Name = "button5";
-            button5.Size = new Size(184, 74);
-            button5.TabIndex = 47;
-            button5.Text = "Avaliações";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.Location = new Point(9, 245);
-            label17.Name = "label17";
-            label17.Size = new Size(36, 15);
-            label17.TabIndex = 49;
-            label17.Text = "Filtro";
+            comboBoxFilter.FormattingEnabled = true;
+            comboBoxFilter.Items.AddRange(new object[] { "Tempo de Entrada: >", "Tempo de Entrada: <", "Tempo de Entrada: =" });
+            comboBoxFilter.Location = new Point(47, 228);
+            comboBoxFilter.Name = "comboBoxFilter";
+            comboBoxFilter.Size = new Size(122, 23);
+            comboBoxFilter.TabIndex = 45;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(9, 216);
+            label7.Location = new Point(2, 185);
             label7.Name = "label7";
             label7.Size = new Size(39, 15);
             label7.TabIndex = 42;
@@ -457,43 +440,34 @@
             // button8
             // 
             button8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button8.Location = new Point(60, 274);
+            button8.Location = new Point(47, 268);
             button8.Name = "button8";
-            button8.Size = new Size(122, 31);
+            button8.Size = new Size(122, 30);
             button8.TabIndex = 44;
             button8.Text = "Aplicar Filtro\r\n";
             button8.UseVisualStyleBackColor = true;
             button8.Click += button8_Click_1;
             // 
-            // comboBox1
+            // label17
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Tempo de Entrada: >", "Tempo de Entrada: <", "Tempo de Entrada: =" });
-            comboBox1.Location = new Point(60, 245);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(122, 23);
-            comboBox1.TabIndex = 45;
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label17.Location = new Point(5, 228);
+            label17.Name = "label17";
+            label17.Size = new Size(36, 15);
+            label17.TabIndex = 49;
+            label17.Text = "Filtro";
             // 
-            // analise1
+            // analise
             // 
-            analise1.Location = new Point(60, 216);
-            analise1.Name = "analise1";
-            analise1.Size = new Size(122, 23);
-            analise1.TabIndex = 41;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label19.Location = new Point(90, 181);
-            label19.Name = "label19";
-            label19.Size = new Size(66, 21);
-            label19.TabIndex = 43;
-            label19.Text = "Análise";
+            analise.Location = new Point(47, 185);
+            analise.Name = "analise";
+            analise.Size = new Size(122, 23);
+            analise.TabIndex = 41;
             // 
             // Calendar
             // 
-            Calendar.Location = new Point(228, 479);
+            Calendar.Location = new Point(230, 481);
             Calendar.Name = "Calendar";
             Calendar.TabIndex = 31;
             // 
@@ -605,8 +579,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientInactiveCaption;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1370, 640);
+            Controls.Add(manuPanel);
             Controls.Add(calculateHours);
             Controls.Add(addsMainInfo);
             Controls.Add(DateTimePicker);
@@ -623,7 +598,6 @@
             Controls.Add(search);
             Controls.Add(label11);
             Controls.Add(txtBoxGenerateCupon);
-            Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Controls.Add(label12);
@@ -649,8 +623,8 @@
             panel1.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            manuPanel.ResumeLayout(false);
+            manuPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -686,7 +660,7 @@
         private ToolStripButton colarToolStripButton;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton ajudaToolStripButton;
-        private Panel panel3;
+        private Panel manuPanel;
         private MonthCalendar Calendar;
         private Label label8;
         private Label label13;
@@ -697,16 +671,14 @@
         private Label label15;
         private ImageList imageList1;
         private Button button7;
-        private TextBox analise1;
-        private Label label19;
+        private TextBox analise;
         private Button button8;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxFilter;
         private Button button4;
         private Label label16;
         private Label label5;
         private Label label17;
         private Label label7;
-        private Button button5;
         private DateTimePicker DateTimePicker;
         private Button addsMainInfo;
         private Button calculateHours;

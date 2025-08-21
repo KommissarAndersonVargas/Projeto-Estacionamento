@@ -1,14 +1,5 @@
-﻿using iTextSharp.text;
-using Newtonsoft.Json;
-using Projeto_Estacionamento.Classes;
+﻿using Projeto_Estacionamento.Classes;
 using Projeto_Estacionamento.Factory;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Projeto_Estacionamento.Controls
 {
@@ -98,22 +89,6 @@ namespace Projeto_Estacionamento.Controls
             }
         }
 
-        public static void SaveFile()
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string jsonString = System.Text.Json.JsonSerializer.Serialize(Infocar.infocarsList);
-                    File.WriteAllText(saveFileDialog.FileName, jsonString);
-
-                    MessageBox.Show("Arquivo salvo com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
         public static void SearchInDataGrid(string searchText, DataGridView dataGridView1)
         {
             try
@@ -157,34 +132,69 @@ namespace Projeto_Estacionamento.Controls
             }
         }
 
-        public static void OpenFile(DataGridView dataGridView1)
+        public static void ApplyFilter(ComboBox comboBoxFilter, TextBox analise)
         {
             try
             {
-                Infocar.infocarsList = Desserialization();
+                if (comboBoxFilter.Text.Equals("Tempo de Entrada: >"))
+                {
+                    if (GlobalVariables.filterValues.Count() != 0)
+                    { GlobalVariables.filterValues.Clear(); }
 
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = Infocar.infocarsList;
+                    int selection = int.Parse(analise.Text);
+                    var result = Infocar.infocarsList.
+                        Where(info => info.Time.Hour > selection).Select(info => info.Placa);
 
+                    foreach (var selectedInfo in result)
+                    {
+                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    }
+
+                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                    staticsForm.ShowDialog();
+                }
+
+                if (comboBoxFilter.Text.Equals("Tempo de Entrada: <"))
+                {
+                    if (GlobalVariables.filterValues.Count() != 0)
+                    { GlobalVariables.filterValues.Clear(); }
+
+                    int selection = int.Parse(analise.Text);
+                    var result = Infocar.infocarsList
+                        .Where(info => info.Time.Hour < selection)
+                        .Select(info => info.Placa);
+
+                    foreach (var selectedInfo in result)
+                    {
+                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    }
+
+                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                    staticsForm.ShowDialog();
+                }
+
+                if (comboBoxFilter.Text.Equals("Tempo de Entrada: ="))
+                {
+                    if (GlobalVariables.filterValues.Count() != 0) 
+                    { GlobalVariables.filterValues.Clear(); }
+
+                    int selection = int.Parse(analise.Text);
+                    var result = Infocar.infocarsList
+                        .Where(info => info.Time.Hour.Equals(selection))
+                        .Select(info => info.Placa);
+
+                    foreach (var selectedInfo in result)
+                    {
+                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
+                    }
+
+                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
+                    staticsForm.ShowDialog();
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private static BindingList<Infocar> Desserialization()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Arquivos JSON (*.json)|*.json";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                var car = JsonConvert.DeserializeObject<BindingList<Infocar>>(File.ReadAllText(openFileDialog.FileName));
-                return car;
-            }
-            else
-            {
-                return null;
             }
         }
     }
