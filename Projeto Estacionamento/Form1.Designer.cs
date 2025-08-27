@@ -30,26 +30,26 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            label1 = new Label();
+            staticLblMainTitle = new Label();
             txtbArriveHour = new TextBox();
             txtbArriveMin = new TextBox();
             txtbLeftHour = new TextBox();
             txtbLeftMin = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label6 = new Label();
+            staticLblTitleIn = new Label();
+            staticLblTitleOut = new Label();
+            staticLblHoursIn = new Label();
+            staticLblHoursOut = new Label();
             imageList1 = new ImageList(components);
-            label9 = new Label();
+            staticLblPlotIn = new Label();
             txtbrrivePlot = new TextBox();
             txtbLeftPlot = new TextBox();
-            label10 = new Label();
+            staticLblPlotOut = new Label();
             txtBoxGenerateCupon = new TextBox();
-            label11 = new Label();
+            staticLblInsertPlot2 = new Label();
             search = new Button();
-            label12 = new Label();
+            staticLblDatagridTitle = new Label();
             dataGridView1 = new DataGridView();
-            panel1 = new Panel();
+            mainPnl = new Panel();
             toolStrip1 = new ToolStrip();
             novaToolStripButton = new ToolStripButton();
             abrirToolStripButton = new ToolStripButton();
@@ -61,44 +61,39 @@
             colarToolStripButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             ajudaToolStripButton = new ToolStripButton();
-            button4 = new Button();
-            button3 = new Button();
+            AutomaticParkingLot = new Button();
             txtSearchText = new TextBox();
-            manuPanel = new Panel();
-            comboBoxFilter = new ComboBox();
-            label7 = new Label();
-            button8 = new Button();
-            label17 = new Label();
-            analise = new TextBox();
+            menuPnl = new Panel();
             Calendar = new MonthCalendar();
-            label8 = new Label();
-            label13 = new Label();
+            staticLblTitleDate = new Label();
+            staticLblGenerateTicktTile = new Label();
             openFileDialog1 = new OpenFileDialog();
-            label14 = new Label();
-            label15 = new Label();
-            button7 = new Button();
-            label16 = new Label();
-            label5 = new Label();
+            staticLblInsertPlot1 = new Label();
+            staticLblSearchPlotTitle = new Label();
+            staticLblSymbolHourIn = new Label();
+            staticLblSymbolHourOut = new Label();
             DateTimePicker = new DateTimePicker();
             addsMainInfo = new Button();
             calculateHours = new Button();
+            DeleteItemButton = new Button();
+            SerachButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            panel1.SuspendLayout();
+            mainPnl.SuspendLayout();
             toolStrip1.SuspendLayout();
-            manuPanel.SuspendLayout();
+            menuPnl.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // staticLblMainTitle
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Sitka Text", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(532, 38);
-            label1.Name = "label1";
-            label1.Size = new Size(260, 42);
-            label1.TabIndex = 0;
-            label1.Text = "Parking Lot Super";
+            staticLblMainTitle.AutoSize = true;
+            staticLblMainTitle.BackColor = Color.Transparent;
+            staticLblMainTitle.Font = new Font("Sitka Text", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            staticLblMainTitle.ForeColor = Color.Black;
+            staticLblMainTitle.Location = new Point(532, 38);
+            staticLblMainTitle.Name = "staticLblMainTitle";
+            staticLblMainTitle.Size = new Size(260, 42);
+            staticLblMainTitle.TabIndex = 0;
+            staticLblMainTitle.Text = "Parking Lot Super";
             // 
             // txtbArriveHour
             // 
@@ -129,45 +124,45 @@
             txtbLeftMin.Size = new Size(61, 23);
             txtbLeftMin.TabIndex = 4;
             // 
-            // label2
+            // staticLblTitleIn
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(245, 174);
-            label2.Name = "label2";
-            label2.Size = new Size(145, 20);
-            label2.TabIndex = 7;
-            label2.Text = "Horário de entrada ";
+            staticLblTitleIn.AutoSize = true;
+            staticLblTitleIn.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblTitleIn.Location = new Point(245, 174);
+            staticLblTitleIn.Name = "staticLblTitleIn";
+            staticLblTitleIn.Size = new Size(145, 20);
+            staticLblTitleIn.TabIndex = 7;
+            staticLblTitleIn.Text = "Horário de entrada ";
             // 
-            // label3
+            // staticLblTitleOut
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(481, 174);
-            label3.Name = "label3";
-            label3.Size = new Size(124, 20);
-            label3.TabIndex = 8;
-            label3.Text = "Horário de Saida";
+            staticLblTitleOut.AutoSize = true;
+            staticLblTitleOut.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblTitleOut.Location = new Point(481, 174);
+            staticLblTitleOut.Name = "staticLblTitleOut";
+            staticLblTitleOut.Size = new Size(124, 20);
+            staticLblTitleOut.TabIndex = 8;
+            staticLblTitleOut.Text = "Horário de Saida";
             // 
-            // label4
+            // staticLblHoursIn
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(200, 221);
-            label4.Name = "label4";
-            label4.Size = new Size(39, 15);
-            label4.TabIndex = 10;
-            label4.Text = "Horas";
+            staticLblHoursIn.AutoSize = true;
+            staticLblHoursIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblHoursIn.Location = new Point(200, 221);
+            staticLblHoursIn.Name = "staticLblHoursIn";
+            staticLblHoursIn.Size = new Size(39, 15);
+            staticLblHoursIn.TabIndex = 10;
+            staticLblHoursIn.Text = "Horas";
             // 
-            // label6
+            // staticLblHoursOut
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(427, 221);
-            label6.Name = "label6";
-            label6.Size = new Size(39, 15);
-            label6.TabIndex = 12;
-            label6.Text = "Horas";
+            staticLblHoursOut.AutoSize = true;
+            staticLblHoursOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblHoursOut.Location = new Point(427, 221);
+            staticLblHoursOut.Name = "staticLblHoursOut";
+            staticLblHoursOut.Size = new Size(39, 15);
+            staticLblHoursOut.TabIndex = 12;
+            staticLblHoursOut.Text = "Horas";
             // 
             // imageList1
             // 
@@ -181,15 +176,15 @@
             imageList1.Images.SetKeyName(4, "prop.png");
             imageList1.Images.SetKeyName(5, "message.png");
             // 
-            // label9
+            // staticLblPlotIn
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(200, 271);
-            label9.Name = "label9";
-            label9.Size = new Size(35, 15);
-            label9.TabIndex = 18;
-            label9.Text = "Placa";
+            staticLblPlotIn.AutoSize = true;
+            staticLblPlotIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblPlotIn.Location = new Point(200, 271);
+            staticLblPlotIn.Name = "staticLblPlotIn";
+            staticLblPlotIn.Size = new Size(35, 15);
+            staticLblPlotIn.TabIndex = 18;
+            staticLblPlotIn.Text = "Placa";
             // 
             // txtbrrivePlot
             // 
@@ -205,15 +200,15 @@
             txtbLeftPlot.Size = new Size(151, 23);
             txtbLeftPlot.TabIndex = 20;
             // 
-            // label10
+            // staticLblPlotOut
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(427, 271);
-            label10.Name = "label10";
-            label10.Size = new Size(35, 15);
-            label10.TabIndex = 21;
-            label10.Text = "Placa";
+            staticLblPlotOut.AutoSize = true;
+            staticLblPlotOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblPlotOut.Location = new Point(427, 271);
+            staticLblPlotOut.Name = "staticLblPlotOut";
+            staticLblPlotOut.Size = new Size(35, 15);
+            staticLblPlotOut.TabIndex = 21;
+            staticLblPlotOut.Text = "Placa";
             // 
             // txtBoxGenerateCupon
             // 
@@ -222,15 +217,15 @@
             txtBoxGenerateCupon.Size = new Size(475, 23);
             txtBoxGenerateCupon.TabIndex = 23;
             // 
-            // label11
+            // staticLblInsertPlot2
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(652, 604);
-            label11.Name = "label11";
-            label11.Size = new Size(103, 21);
-            label11.TabIndex = 24;
-            label11.Text = "Inserir placa";
+            staticLblInsertPlot2.AutoSize = true;
+            staticLblInsertPlot2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblInsertPlot2.Location = new Point(652, 604);
+            staticLblInsertPlot2.Name = "staticLblInsertPlot2";
+            staticLblInsertPlot2.Size = new Size(103, 21);
+            staticLblInsertPlot2.TabIndex = 24;
+            staticLblInsertPlot2.Text = "Inserir placa";
             // 
             // search
             // 
@@ -243,15 +238,15 @@
             search.UseVisualStyleBackColor = true;
             search.Click += search_Click;
             // 
-            // label12
+            // staticLblDatagridTitle
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(888, 166);
-            label12.Name = "label12";
-            label12.Size = new Size(287, 22);
-            label12.TabIndex = 26;
-            label12.Text = "Registro de Veículos  e Tarifas";
+            staticLblDatagridTitle.AutoSize = true;
+            staticLblDatagridTitle.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            staticLblDatagridTitle.Location = new Point(888, 166);
+            staticLblDatagridTitle.Name = "staticLblDatagridTitle";
+            staticLblDatagridTitle.Size = new Size(287, 22);
+            staticLblDatagridTitle.TabIndex = 26;
+            staticLblDatagridTitle.Text = "Registro de Veículos  e Tarifas";
             // 
             // dataGridView1
             // 
@@ -262,15 +257,15 @@
             dataGridView1.Size = new Size(579, 234);
             dataGridView1.TabIndex = 27;
             // 
-            // panel1
+            // mainPnl
             // 
-            panel1.BackColor = SystemColors.ControlDarkDark;
-            panel1.Controls.Add(toolStrip1);
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(-2, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1374, 144);
-            panel1.TabIndex = 28;
+            mainPnl.BackColor = SystemColors.ControlDarkDark;
+            mainPnl.Controls.Add(toolStrip1);
+            mainPnl.Controls.Add(staticLblMainTitle);
+            mainPnl.Location = new Point(-2, 2);
+            mainPnl.Name = "mainPnl";
+            mainPnl.Size = new Size(1374, 144);
+            mainPnl.TabIndex = 28;
             // 
             // toolStrip1
             // 
@@ -371,30 +366,19 @@
             ajudaToolStripButton.Text = "Aju&da";
             ajudaToolStripButton.Click += ajudaToolStripButton_Click;
             // 
-            // button4
+            // AutomaticParkingLot
             // 
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Image = Properties.Resources._9043885_automatic_icon;
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(5, 6);
-            button4.Name = "button4";
-            button4.Size = new Size(191, 74);
-            button4.TabIndex = 46;
-            button4.Text = "Parking Lot Automatic";
-            button4.TextAlign = ContentAlignment.MiddleRight;
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(1242, 519);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 24);
-            button3.TabIndex = 36;
-            button3.Text = "Procurar";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_1;
+            AutomaticParkingLot.FlatStyle = FlatStyle.Flat;
+            AutomaticParkingLot.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            AutomaticParkingLot.Image = Properties.Resources._9043885_automatic_icon;
+            AutomaticParkingLot.ImageAlign = ContentAlignment.MiddleLeft;
+            AutomaticParkingLot.Location = new Point(5, 6);
+            AutomaticParkingLot.Name = "AutomaticParkingLot";
+            AutomaticParkingLot.Size = new Size(191, 74);
+            AutomaticParkingLot.TabIndex = 46;
+            AutomaticParkingLot.Text = "Parking Lot Automatic";
+            AutomaticParkingLot.TextAlign = ContentAlignment.MiddleRight;
+            AutomaticParkingLot.UseVisualStyleBackColor = true;
             // 
             // txtSearchText
             // 
@@ -403,67 +387,15 @@
             txtSearchText.Size = new Size(475, 23);
             txtSearchText.TabIndex = 36;
             // 
-            // manuPanel
+            // menuPnl
             // 
-            manuPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            manuPanel.BackColor = SystemColors.ControlDarkDark;
-            manuPanel.Controls.Add(comboBoxFilter);
-            manuPanel.Controls.Add(label7);
-            manuPanel.Controls.Add(button8);
-            manuPanel.Controls.Add(label17);
-            manuPanel.Controls.Add(button4);
-            manuPanel.Controls.Add(analise);
-            manuPanel.Location = new Point(-2, 142);
-            manuPanel.Name = "manuPanel";
-            manuPanel.Size = new Size(199, 501);
-            manuPanel.TabIndex = 29;
-            // 
-            // comboBoxFilter
-            // 
-            comboBoxFilter.FormattingEnabled = true;
-            comboBoxFilter.Items.AddRange(new object[] { "Tempo de Entrada: >", "Tempo de Entrada: <", "Tempo de Entrada: =" });
-            comboBoxFilter.Location = new Point(47, 228);
-            comboBoxFilter.Name = "comboBoxFilter";
-            comboBoxFilter.Size = new Size(122, 23);
-            comboBoxFilter.TabIndex = 45;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(2, 185);
-            label7.Name = "label7";
-            label7.Size = new Size(39, 15);
-            label7.TabIndex = 42;
-            label7.Text = "Horas";
-            // 
-            // button8
-            // 
-            button8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button8.Location = new Point(47, 268);
-            button8.Name = "button8";
-            button8.Size = new Size(122, 30);
-            button8.TabIndex = 44;
-            button8.Text = "Aplicar Filtro\r\n";
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += button8_Click_1;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label17.Location = new Point(5, 228);
-            label17.Name = "label17";
-            label17.Size = new Size(36, 15);
-            label17.TabIndex = 49;
-            label17.Text = "Filtro";
-            // 
-            // analise
-            // 
-            analise.Location = new Point(47, 185);
-            analise.Name = "analise";
-            analise.Size = new Size(122, 23);
-            analise.TabIndex = 41;
+            menuPnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            menuPnl.BackColor = SystemColors.ControlDarkDark;
+            menuPnl.Controls.Add(AutomaticParkingLot);
+            menuPnl.Location = new Point(-2, 142);
+            menuPnl.Name = "menuPnl";
+            menuPnl.Size = new Size(199, 548);
+            menuPnl.TabIndex = 29;
             // 
             // Calendar
             // 
@@ -471,80 +403,69 @@
             Calendar.Name = "Calendar";
             Calendar.TabIndex = 31;
             // 
-            // label8
+            // staticLblTitleDate
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(280, 418);
-            label8.Name = "label8";
-            label8.Size = new Size(125, 22);
-            label8.TabIndex = 32;
-            label8.Text = "Date Control";
+            staticLblTitleDate.AutoSize = true;
+            staticLblTitleDate.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            staticLblTitleDate.Location = new Point(280, 418);
+            staticLblTitleDate.Name = "staticLblTitleDate";
+            staticLblTitleDate.Size = new Size(125, 22);
+            staticLblTitleDate.TabIndex = 32;
+            staticLblTitleDate.Text = "Date Control";
             // 
-            // label13
+            // staticLblGenerateTicktTile
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(947, 573);
-            label13.Name = "label13";
-            label13.Size = new Size(127, 22);
-            label13.TabIndex = 33;
-            label13.Text = "Gerar Cupon";
+            staticLblGenerateTicktTile.AutoSize = true;
+            staticLblGenerateTicktTile.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            staticLblGenerateTicktTile.Location = new Point(947, 573);
+            staticLblGenerateTicktTile.Name = "staticLblGenerateTicktTile";
+            staticLblGenerateTicktTile.Size = new Size(127, 22);
+            staticLblGenerateTicktTile.TabIndex = 33;
+            staticLblGenerateTicktTile.Text = "Gerar Cupon";
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label14
+            // staticLblInsertPlot1
             // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(652, 517);
-            label14.Name = "label14";
-            label14.Size = new Size(103, 21);
-            label14.TabIndex = 37;
-            label14.Text = "Inserir placa";
+            staticLblInsertPlot1.AutoSize = true;
+            staticLblInsertPlot1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblInsertPlot1.Location = new Point(652, 517);
+            staticLblInsertPlot1.Name = "staticLblInsertPlot1";
+            staticLblInsertPlot1.Size = new Size(103, 21);
+            staticLblInsertPlot1.TabIndex = 37;
+            staticLblInsertPlot1.Text = "Inserir placa";
             // 
-            // label15
+            // staticLblSearchPlotTitle
             // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.Location = new Point(888, 494);
-            label15.Name = "label15";
-            label15.Size = new Size(253, 22);
-            label15.TabIndex = 38;
-            label15.Text = "Procurar Placa no Sistema";
+            staticLblSearchPlotTitle.AutoSize = true;
+            staticLblSearchPlotTitle.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            staticLblSearchPlotTitle.Location = new Point(888, 494);
+            staticLblSearchPlotTitle.Name = "staticLblSearchPlotTitle";
+            staticLblSearchPlotTitle.Size = new Size(253, 22);
+            staticLblSearchPlotTitle.TabIndex = 38;
+            staticLblSearchPlotTitle.Text = "Procurar Placa no Sistema";
             // 
-            // button7
+            // staticLblSymbolHourIn
             // 
-            button7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button7.Location = new Point(729, 431);
-            button7.Name = "button7";
-            button7.Size = new Size(579, 38);
-            button7.TabIndex = 39;
-            button7.Text = "Deletar Item Selecionado";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click_1;
+            staticLblSymbolHourIn.AutoSize = true;
+            staticLblSymbolHourIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblSymbolHourIn.Location = new Point(314, 221);
+            staticLblSymbolHourIn.Name = "staticLblSymbolHourIn";
+            staticLblSymbolHourIn.Size = new Size(10, 15);
+            staticLblSymbolHourIn.TabIndex = 40;
+            staticLblSymbolHourIn.Text = ":";
             // 
-            // label16
+            // staticLblSymbolHourOut
             // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.Location = new Point(314, 221);
-            label16.Name = "label16";
-            label16.Size = new Size(10, 15);
-            label16.TabIndex = 40;
-            label16.Text = ":";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(543, 221);
-            label5.Name = "label5";
-            label5.Size = new Size(10, 15);
-            label5.TabIndex = 41;
-            label5.Text = ":";
+            staticLblSymbolHourOut.AutoSize = true;
+            staticLblSymbolHourOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            staticLblSymbolHourOut.Location = new Point(543, 221);
+            staticLblSymbolHourOut.Name = "staticLblSymbolHourOut";
+            staticLblSymbolHourOut.Size = new Size(10, 15);
+            staticLblSymbolHourOut.TabIndex = 41;
+            staticLblSymbolHourOut.Text = ":";
             // 
             // DateTimePicker
             // 
@@ -575,40 +496,62 @@
             calculateHours.UseVisualStyleBackColor = true;
             calculateHours.Click += calculateHours_Click;
             // 
+            // DeleteItemButton
+            // 
+            DeleteItemButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteItemButton.Location = new Point(729, 439);
+            DeleteItemButton.Name = "DeleteItemButton";
+            DeleteItemButton.Size = new Size(579, 38);
+            DeleteItemButton.TabIndex = 45;
+            DeleteItemButton.Text = "Deletar Item Selecionado";
+            DeleteItemButton.UseVisualStyleBackColor = true;
+            DeleteItemButton.Click += DeleteItemButton_Click;
+            // 
+            // SerachButton
+            // 
+            SerachButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            SerachButton.Location = new Point(1242, 517);
+            SerachButton.Name = "SerachButton";
+            SerachButton.Size = new Size(94, 24);
+            SerachButton.TabIndex = 46;
+            SerachButton.Text = "Procurar";
+            SerachButton.UseVisualStyleBackColor = true;
+            SerachButton.Click += SerachButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(1370, 640);
-            Controls.Add(manuPanel);
+            ClientSize = new Size(1370, 687);
+            Controls.Add(SerachButton);
+            Controls.Add(DeleteItemButton);
+            Controls.Add(menuPnl);
             Controls.Add(calculateHours);
             Controls.Add(addsMainInfo);
             Controls.Add(DateTimePicker);
-            Controls.Add(label5);
-            Controls.Add(label16);
-            Controls.Add(button7);
-            Controls.Add(label15);
-            Controls.Add(label14);
-            Controls.Add(button3);
+            Controls.Add(staticLblSymbolHourOut);
+            Controls.Add(staticLblSymbolHourIn);
+            Controls.Add(staticLblSearchPlotTitle);
+            Controls.Add(staticLblInsertPlot1);
             Controls.Add(Calendar);
-            Controls.Add(label13);
+            Controls.Add(staticLblGenerateTicktTile);
             Controls.Add(txtSearchText);
-            Controls.Add(label8);
+            Controls.Add(staticLblTitleDate);
             Controls.Add(search);
-            Controls.Add(label11);
+            Controls.Add(staticLblInsertPlot2);
             Controls.Add(txtBoxGenerateCupon);
-            Controls.Add(panel1);
+            Controls.Add(mainPnl);
             Controls.Add(dataGridView1);
-            Controls.Add(label12);
-            Controls.Add(label10);
+            Controls.Add(staticLblDatagridTitle);
+            Controls.Add(staticLblPlotOut);
             Controls.Add(txtbLeftPlot);
             Controls.Add(txtbrrivePlot);
-            Controls.Add(label9);
-            Controls.Add(label6);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            Controls.Add(staticLblPlotIn);
+            Controls.Add(staticLblHoursOut);
+            Controls.Add(staticLblHoursIn);
+            Controls.Add(staticLblTitleOut);
+            Controls.Add(staticLblTitleIn);
             Controls.Add(txtbLeftMin);
             Controls.Add(txtbLeftHour);
             Controls.Add(txtbArriveMin);
@@ -619,12 +562,11 @@
             Text = "Parking Lot Super System ";
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            mainPnl.ResumeLayout(false);
+            mainPnl.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            manuPanel.ResumeLayout(false);
-            manuPanel.PerformLayout();
+            menuPnl.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -634,21 +576,21 @@
         private TextBox txtbArriveMin;
         private TextBox txtbLeftHour;
         private TextBox txtbLeftMin;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label6;
-        private Label label9;
+        private Label staticLblTitleIn;
+        private Label staticLblTitleOut;
+        private Label staticLblHoursIn;
+        private Label staticLblHoursOut;
+        private Label staticLblPlotIn;
         private TextBox txtbrrivePlot;
         private TextBox txtbLeftPlot;
-        private Label label10;
+        private Label staticLblPlotOut;
         private TextBox txtBoxGenerateCupon;
-        private Label label11;
+        private Label staticLblInsertPlot2;
         private Button search;
-        private Label label12;
-        public Label label1;
+        private Label staticLblDatagridTitle;
+        public Label staticLblMainTitle;
         private DataGridView dataGridView1;
-        private Panel panel1;
+        private Panel mainPnl;
         public ToolStrip toolStrip1;
         private ToolStripButton novaToolStripButton;
         private ToolStripButton abrirToolStripButton;
@@ -660,27 +602,22 @@
         private ToolStripButton colarToolStripButton;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton ajudaToolStripButton;
-        private Panel manuPanel;
+        private Panel menuPnl;
         private MonthCalendar Calendar;
-        private Label label8;
-        private Label label13;
+        private Label staticLblTitleDate;
+        private Label staticLblGenerateTicktTile;
         private OpenFileDialog openFileDialog1;
-        private Button button3;
         private TextBox txtSearchText;
-        private Label label14;
-        private Label label15;
+        private Label staticLblInsertPlot1;
+        private Label staticLblSearchPlotTitle;
         private ImageList imageList1;
-        private Button button7;
-        private TextBox analise;
-        private Button button8;
-        private ComboBox comboBoxFilter;
-        private Button button4;
-        private Label label16;
-        private Label label5;
-        private Label label17;
-        private Label label7;
+        private Button AutomaticParkingLot;
+        private Label staticLblSymbolHourIn;
+        private Label staticLblSymbolHourOut;
         private DateTimePicker DateTimePicker;
         private Button addsMainInfo;
         private Button calculateHours;
+        private Button DeleteItemButton;
+        private Button SerachButton;
     }
 }

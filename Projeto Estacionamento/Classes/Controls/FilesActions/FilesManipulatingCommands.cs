@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_Estacionamento.Controls.FilesActions
+namespace Projeto_Estacionamento.Classes.Controls.FilesActions
 {
     public static class FilesManipulatingCommands
     {

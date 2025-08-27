@@ -1,7 +1,8 @@
 ﻿using Projeto_Estacionamento.Classes;
 using Projeto_Estacionamento.Factory;
+using System.Windows.Forms;
 
-namespace Projeto_Estacionamento.Controls
+namespace Projeto_Estacionamento.Classes.Controls
 {
     /// <summary>
     /// Logic for the main form controls. WIP
@@ -132,69 +133,34 @@ namespace Projeto_Estacionamento.Controls
             }
         }
 
-        public static void ApplyFilter(ComboBox comboBoxFilter, TextBox analise)
+        public static void NewProject(DataGridView dataGridView1)
         {
-            try
+            DialogResult resultado = MessageBox.Show(
+             "Tem certeza que deseja criar um novo projeto? Isso ira deletar a edição atual",
+             "Confirmação",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question,
+             MessageBoxDefaultButton.Button2);
+
+            if (resultado == DialogResult.Yes)
             {
-                if (comboBoxFilter.Text.Equals("Tempo de Entrada: >"))
-                {
-                    if (GlobalVariables.filterValues.Count() != 0)
-                    { GlobalVariables.filterValues.Clear(); }
-
-                    int selection = int.Parse(analise.Text);
-                    var result = Infocar.infocarsList.
-                        Where(info => info.Time.Hour > selection).Select(info => info.Placa);
-
-                    foreach (var selectedInfo in result)
-                    {
-                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
-                    }
-
-                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                    staticsForm.ShowDialog();
-                }
-
-                if (comboBoxFilter.Text.Equals("Tempo de Entrada: <"))
-                {
-                    if (GlobalVariables.filterValues.Count() != 0)
-                    { GlobalVariables.filterValues.Clear(); }
-
-                    int selection = int.Parse(analise.Text);
-                    var result = Infocar.infocarsList
-                        .Where(info => info.Time.Hour < selection)
-                        .Select(info => info.Placa);
-
-                    foreach (var selectedInfo in result)
-                    {
-                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
-                    }
-
-                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                    staticsForm.ShowDialog();
-                }
-
-                if (comboBoxFilter.Text.Equals("Tempo de Entrada: ="))
-                {
-                    if (GlobalVariables.filterValues.Count() != 0) 
-                    { GlobalVariables.filterValues.Clear(); }
-
-                    int selection = int.Parse(analise.Text);
-                    var result = Infocar.infocarsList
-                        .Where(info => info.Time.Hour.Equals(selection))
-                        .Select(info => info.Placa);
-
-                    foreach (var selectedInfo in result)
-                    {
-                        GlobalVariables.filterValues.Add($"Placa: {selectedInfo} \n");
-                    }
-
-                    Estati staticsForm = new Estati(GlobalVariables.filterValues, Infocar.infocarsList.Count());
-                    staticsForm.ShowDialog();
-                }
+                ClearDataGridView(dataGridView1);
             }
-            catch (Exception)
+        }
+
+        private static void ClearDataGridView(DataGridView dataGridView1)
+        {
+            if (dataGridView1.Rows.Count > 0)
             {
-                MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataGridView1.Rows.Clear();
+
+                MessageBox.Show("DataGridView limpo com sucesso!", "Sucesso",
+                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("O DataGridView já está vazio!", "Informação",
+                               MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

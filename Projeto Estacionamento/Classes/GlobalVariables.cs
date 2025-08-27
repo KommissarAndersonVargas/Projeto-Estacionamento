@@ -12,7 +12,7 @@ namespace Projeto_Estacionamento.Classes
 
         public static DateTime TimeNow = DateTime.Now; 
 
-        public static string plot;
+        public static string? plot;
 
         public static int arriveHour; 
 
@@ -22,9 +22,9 @@ namespace Projeto_Estacionamento.Classes
 
         public static int leftMin; 
 
-        public static BasicParkingLot car;
+        public static BasicParkingLot? car;
 
-        public static List<TimeSpan> timeSpanList = new List<TimeSpan>();
+        public static List<TimeSpan>? timeSpanList = new List<TimeSpan>();
 
         public static List<string> filterValues = new List<string>();
     }
