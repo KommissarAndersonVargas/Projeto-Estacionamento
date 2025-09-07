@@ -10,6 +10,31 @@ namespace Projeto_Estacionamento
         public Form1()
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                Properties.Resources.SaveBeforeLeave,
+                Properties.Resources.Confirmation,
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                FilesManipulatingCommands.SaveFile();
+            }
+            else if (result == DialogResult.No)
+            {
+                // This closes the program
+            }
+            else if (result == DialogResult.Cancel)
+            {
+
+                e.Cancel = true;
+            }
         }
 
         private void addsMainInfo_Click(object sender, EventArgs e)

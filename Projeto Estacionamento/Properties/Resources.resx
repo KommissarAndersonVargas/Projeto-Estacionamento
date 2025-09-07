@@ -169,6 +169,9 @@
   <data name="PlotNotFound" xml:space="preserve">
     <value>Placa não encontrada</value>
   </data>
+  <data name="SaveBeforeLeave" xml:space="preserve">
+    <value>Deseja salvar o projeto antes de sair?</value>
+  </data>
   <data name="SearchForaPlot" xml:space="preserve">
     <value>Digite uma placa para pesquisar</value>
   </data>

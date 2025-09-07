@@ -266,6 +266,15 @@ namespace Projeto_Estacionamento.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Deseja salvar o projeto antes de sair?.
+        /// </summary>
+        internal static string SaveBeforeLeave {
+            get {
+                return ResourceManager.GetString("SaveBeforeLeave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Digite uma placa para pesquisar.
         /// </summary>
         internal static string SearchForaPlot {
