@@ -1,12 +1,6 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 
 namespace Projeto_Estacionamento.Classes
 {
@@ -66,14 +60,18 @@ namespace Projeto_Estacionamento.Classes
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.RestoreDirectory = true;
-                    saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
+                    saveFileDialog.Filter = Properties.Resources.AllPdfFilters;
                     saveFileDialog.FilterIndex = 2;
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string path = saveFileDialog.FileName;
                         PrintTicket(car, path);
-                        MessageBox.Show("Arquivo gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Properties.Resources.FileGenerated, 
+                            Properties.Resources.MessageBoxInfo,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
                         break;
                     }
                 }
@@ -124,7 +122,7 @@ namespace Projeto_Estacionamento.Classes
         public static void PrintAllCarsInSystem()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf";
+            saveFileDialog.Filter = Properties.Resources.AllPdfFilters;
             saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
 
@@ -146,7 +144,11 @@ namespace Projeto_Estacionamento.Classes
                 doc.Open();
                 doc.Add(paragrafo);
                 doc.Close();
-                MessageBox.Show("Registro gerado com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show(Properties.Resources.FileGenerated,
+                    Properties.Resources.MessageBoxInfo,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 

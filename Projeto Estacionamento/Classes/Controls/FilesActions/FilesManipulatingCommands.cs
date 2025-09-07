@@ -1,11 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Projeto_Estacionamento.Classes;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projeto_Estacionamento.Classes.Controls.FilesActions
 {
@@ -17,20 +11,26 @@ namespace Projeto_Estacionamento.Classes.Controls.FilesActions
             {
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
+                    saveFileDialog.Filter = Properties.Resources.AllJsonFilters;
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string jsonString = System.Text.Json.JsonSerializer.Serialize(Infocar.infocarsList);
                         File.WriteAllText(saveFileDialog.FileName, jsonString);
 
-                        MessageBox.Show("Arquivo salvo com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Properties.Resources.FileSaved,
+                            Properties.Resources.MessageBoxInfo, 
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.UnExcpectedError, 
+                    Properties.Resources.MessageBoxError,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -38,14 +38,16 @@ namespace Projeto_Estacionamento.Classes.Controls.FilesActions
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*";
+                saveFileDialog.Filter = Properties.Resources.AllJsonFilters;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string jsonString = System.Text.Json.JsonSerializer.Serialize(Infocar.infocarsList);
                     File.WriteAllText(saveFileDialog.FileName, jsonString);
 
-                    MessageBox.Show("Arquivo salvo com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Properties.Resources.FileSaved,
+                        Properties.Resources.MessageBoxInfo,
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -61,13 +63,15 @@ namespace Projeto_Estacionamento.Classes.Controls.FilesActions
             }
             catch (Exception)
             {
-                MessageBox.Show("Um erro ocorreu", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.UnExcpectedError,
+                    Properties.Resources.MessageBoxError,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private static BindingList<Infocar> Desserialization()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Arquivos JSON (*.json)|*.json";
+            openFileDialog.Filter = Properties.Resources.JsonFilters;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

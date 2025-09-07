@@ -44,7 +44,10 @@ namespace Projeto_Estacionamento
 
         private void colarToolStripButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcao não aplicavel", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Properties.Resources.NotFunctional,
+                Properties.Resources.MessageBoxInfo,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void ajudaToolStripButton_Click(object sender, EventArgs e)

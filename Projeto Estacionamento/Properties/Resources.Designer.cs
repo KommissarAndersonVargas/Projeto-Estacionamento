@@ -111,6 +111,60 @@ namespace Projeto_Estacionamento.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Arquivos JSON (*.json)|*.json|Todos os arquivos (*.*)|*.*.
+        /// </summary>
+        internal static string AllJsonFilters {
+            get {
+                return ResourceManager.GetString("AllJsonFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a All files (*.*)|*.*|Pdf File (*.pdf)|*.pdf.
+        /// </summary>
+        internal static string AllPdfFilters {
+            get {
+                return ResourceManager.GetString("AllPdfFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Confirmação.
+        /// </summary>
+        internal static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O dataGridView foi limpo.
+        /// </summary>
+        internal static string DataGridClear {
+            get {
+                return ResourceManager.GetString("DataGridClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O DataGridView já está vazio.
+        /// </summary>
+        internal static string DataGridIsAlreadyClear {
+            get {
+                return ResourceManager.GetString("DataGridIsAlreadyClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro durante a busca.
+        /// </summary>
+        internal static string ErrorDuringSearch {
+            get {
+                return ResourceManager.GetString("ErrorDuringSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap excel {
@@ -121,12 +175,111 @@ namespace Projeto_Estacionamento.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Arquivo gerado com sucesso.
+        /// </summary>
+        internal static string FileGenerated {
+            get {
+                return ResourceManager.GetString("FileGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Arquivo salvo com sucesso.
+        /// </summary>
+        internal static string FileSaved {
+            get {
+                return ResourceManager.GetString("FileSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tem certeza que deseja criar um novo projeto? Isso ira deletar a edição atual.
+        /// </summary>
+        internal static string HaveYouSureNewProject {
+            get {
+                return ResourceManager.GetString("HaveYouSureNewProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Arquivos JSON (*.json)|*.json.
+        /// </summary>
+        internal static string JsonFilters {
+            get {
+                return ResourceManager.GetString("JsonFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro.
+        /// </summary>
+        internal static string MessageBoxError {
+            get {
+                return ResourceManager.GetString("MessageBoxError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Informação.
+        /// </summary>
+        internal static string MessageBoxInfo {
+            get {
+                return ResourceManager.GetString("MessageBoxInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Warning.
+        /// </summary>
+        internal static string MessageBoxWarning {
+            get {
+                return ResourceManager.GetString("MessageBoxWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Função não aplicavel .
+        /// </summary>
+        internal static string NotFunctional {
+            get {
+                return ResourceManager.GetString("NotFunctional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap parking_lot_banner {
             get {
                 object obj = ResourceManager.GetObject("parking-lot-banner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Placa não encontrada.
+        /// </summary>
+        internal static string PlotNotFound {
+            get {
+                return ResourceManager.GetString("PlotNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Digite uma placa para pesquisar.
+        /// </summary>
+        internal static string SearchForaPlot {
+            get {
+                return ResourceManager.GetString("SearchForaPlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro inesperado.
+        /// </summary>
+        internal static string UnExcpectedError {
+            get {
+                return ResourceManager.GetString("UnExcpectedError", resourceCulture);
             }
         }
     }

@@ -1,11 +1,9 @@
-﻿using Projeto_Estacionamento.Classes;
-using Projeto_Estacionamento.Factory;
-using System.Windows.Forms;
+﻿using Projeto_Estacionamento.Factory;
 
 namespace Projeto_Estacionamento.Classes.Controls
 {
     /// <summary>
-    /// Logic for the main form controls. WIP
+    /// Logic for the main form controls
     /// </summary>
     public static class ControlsOperations
     {
@@ -34,7 +32,9 @@ namespace Projeto_Estacionamento.Classes.Controls
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.UnExcpectedError,
+                    Properties.Resources.MessageBoxError,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             void PrepareArriveInputControls()
@@ -76,7 +76,9 @@ namespace Projeto_Estacionamento.Classes.Controls
             }
             catch (Exception)
             {
-                MessageBox.Show("Erro inesperado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.UnExcpectedError, 
+                    Properties.Resources.MessageBoxError,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             void PrepareExitInputControls()
@@ -99,7 +101,11 @@ namespace Projeto_Estacionamento.Classes.Controls
 
                 if (string.IsNullOrWhiteSpace(searchText))
                 {
-                    MessageBox.Show("Digite uma placa para pesquisar.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Properties.Resources.SearchForaPlot, 
+                        Properties.Resources.MessageBoxWarning,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
                     return;
                 }
 
@@ -124,20 +130,25 @@ namespace Projeto_Estacionamento.Classes.Controls
 
                 if (!found)
                 {
-                    MessageBox.Show($"Placa '{searchText}' não encontrada.", "Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Properties.Resources.PlotNotFound, 
+                        Properties.Resources.MessageBoxInfo, 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Information);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Erro durante a busca: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.ErrorDuringSearch,
+                    Properties.Resources.MessageBoxError, 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
         }
 
         public static void NewProject(DataGridView dataGridView1)
         {
             DialogResult resultado = MessageBox.Show(
-             "Tem certeza que deseja criar um novo projeto? Isso ira deletar a edição atual",
-             "Confirmação",
+             Properties.Resources.HaveYouSureNewProject,
+             Properties.Resources.Confirmation,
              MessageBoxButtons.YesNo,
              MessageBoxIcon.Question,
              MessageBoxDefaultButton.Button2);
@@ -154,13 +165,15 @@ namespace Projeto_Estacionamento.Classes.Controls
             {
                 dataGridView1.Rows.Clear();
 
-                MessageBox.Show("DataGridView limpo com sucesso!", "Sucesso",
-                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Properties.Resources.DataGridClear, 
+                                Properties.Resources.MessageBoxInfo,
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("O DataGridView já está vazio!", "Informação",
-                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Properties.Resources.DataGridIsAlreadyClear,
+                                Properties.Resources.MessageBoxInfo,
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

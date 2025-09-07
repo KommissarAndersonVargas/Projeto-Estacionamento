@@ -64,15 +64,15 @@
             AutomaticParkingLot = new Button();
             txtSearchText = new TextBox();
             menuPnl = new Panel();
-            Calendar = new MonthCalendar();
             staticLblTitleDate = new Label();
+            Calendar = new MonthCalendar();
+            DateTimePicker = new DateTimePicker();
             staticLblGenerateTicktTile = new Label();
             openFileDialog1 = new OpenFileDialog();
             staticLblInsertPlot1 = new Label();
             staticLblSearchPlotTitle = new Label();
             staticLblSymbolHourIn = new Label();
             staticLblSymbolHourOut = new Label();
-            DateTimePicker = new DateTimePicker();
             addsMainInfo = new Button();
             calculateHours = new Button();
             DeleteItemButton = new Button();
@@ -97,21 +97,21 @@
             // 
             // txtbArriveHour
             // 
-            txtbArriveHour.Location = new Point(245, 218);
+            txtbArriveHour.Location = new Point(309, 235);
             txtbArriveHour.Name = "txtbArriveHour";
             txtbArriveHour.Size = new Size(61, 23);
             txtbArriveHour.TabIndex = 1;
             // 
             // txtbArriveMin
             // 
-            txtbArriveMin.Location = new Point(331, 218);
+            txtbArriveMin.Location = new Point(395, 235);
             txtbArriveMin.Name = "txtbArriveMin";
             txtbArriveMin.Size = new Size(61, 23);
             txtbArriveMin.TabIndex = 2;
             // 
             // txtbLeftHour
             // 
-            txtbLeftHour.Location = new Point(472, 218);
+            txtbLeftHour.Location = new Point(536, 235);
             txtbLeftHour.Multiline = true;
             txtbLeftHour.Name = "txtbLeftHour";
             txtbLeftHour.Size = new Size(61, 23);
@@ -119,7 +119,7 @@
             // 
             // txtbLeftMin
             // 
-            txtbLeftMin.Location = new Point(562, 218);
+            txtbLeftMin.Location = new Point(626, 235);
             txtbLeftMin.Name = "txtbLeftMin";
             txtbLeftMin.Size = new Size(61, 23);
             txtbLeftMin.TabIndex = 4;
@@ -128,7 +128,7 @@
             // 
             staticLblTitleIn.AutoSize = true;
             staticLblTitleIn.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblTitleIn.Location = new Point(245, 174);
+            staticLblTitleIn.Location = new Point(309, 191);
             staticLblTitleIn.Name = "staticLblTitleIn";
             staticLblTitleIn.Size = new Size(145, 20);
             staticLblTitleIn.TabIndex = 7;
@@ -138,7 +138,7 @@
             // 
             staticLblTitleOut.AutoSize = true;
             staticLblTitleOut.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblTitleOut.Location = new Point(481, 174);
+            staticLblTitleOut.Location = new Point(545, 191);
             staticLblTitleOut.Name = "staticLblTitleOut";
             staticLblTitleOut.Size = new Size(124, 20);
             staticLblTitleOut.TabIndex = 8;
@@ -148,7 +148,7 @@
             // 
             staticLblHoursIn.AutoSize = true;
             staticLblHoursIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblHoursIn.Location = new Point(200, 221);
+            staticLblHoursIn.Location = new Point(264, 238);
             staticLblHoursIn.Name = "staticLblHoursIn";
             staticLblHoursIn.Size = new Size(39, 15);
             staticLblHoursIn.TabIndex = 10;
@@ -158,7 +158,7 @@
             // 
             staticLblHoursOut.AutoSize = true;
             staticLblHoursOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblHoursOut.Location = new Point(427, 221);
+            staticLblHoursOut.Location = new Point(491, 238);
             staticLblHoursOut.Name = "staticLblHoursOut";
             staticLblHoursOut.Size = new Size(39, 15);
             staticLblHoursOut.TabIndex = 12;
@@ -180,7 +180,7 @@
             // 
             staticLblPlotIn.AutoSize = true;
             staticLblPlotIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblPlotIn.Location = new Point(200, 271);
+            staticLblPlotIn.Location = new Point(264, 288);
             staticLblPlotIn.Name = "staticLblPlotIn";
             staticLblPlotIn.Size = new Size(35, 15);
             staticLblPlotIn.TabIndex = 18;
@@ -188,14 +188,14 @@
             // 
             // txtbrrivePlot
             // 
-            txtbrrivePlot.Location = new Point(245, 268);
+            txtbrrivePlot.Location = new Point(309, 285);
             txtbrrivePlot.Name = "txtbrrivePlot";
             txtbrrivePlot.Size = new Size(147, 23);
             txtbrrivePlot.TabIndex = 19;
             // 
             // txtbLeftPlot
             // 
-            txtbLeftPlot.Location = new Point(472, 268);
+            txtbLeftPlot.Location = new Point(536, 285);
             txtbLeftPlot.Name = "txtbLeftPlot";
             txtbLeftPlot.Size = new Size(151, 23);
             txtbLeftPlot.TabIndex = 20;
@@ -204,7 +204,7 @@
             // 
             staticLblPlotOut.AutoSize = true;
             staticLblPlotOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblPlotOut.Location = new Point(427, 271);
+            staticLblPlotOut.Location = new Point(491, 288);
             staticLblPlotOut.Name = "staticLblPlotOut";
             staticLblPlotOut.Size = new Size(35, 15);
             staticLblPlotOut.TabIndex = 21;
@@ -368,13 +368,14 @@
             // 
             // AutomaticParkingLot
             // 
+            AutomaticParkingLot.FlatAppearance.BorderSize = 2;
             AutomaticParkingLot.FlatStyle = FlatStyle.Flat;
             AutomaticParkingLot.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             AutomaticParkingLot.Image = Properties.Resources._9043885_automatic_icon;
             AutomaticParkingLot.ImageAlign = ContentAlignment.MiddleLeft;
             AutomaticParkingLot.Location = new Point(5, 6);
             AutomaticParkingLot.Name = "AutomaticParkingLot";
-            AutomaticParkingLot.Size = new Size(191, 74);
+            AutomaticParkingLot.Size = new Size(236, 74);
             AutomaticParkingLot.TabIndex = 46;
             AutomaticParkingLot.Text = "Parking Lot Automatic";
             AutomaticParkingLot.TextAlign = ContentAlignment.MiddleRight;
@@ -392,26 +393,39 @@
             menuPnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             menuPnl.BackColor = SystemColors.ControlDarkDark;
             menuPnl.Controls.Add(AutomaticParkingLot);
+            menuPnl.Controls.Add(staticLblTitleDate);
+            menuPnl.Controls.Add(Calendar);
+            menuPnl.Controls.Add(DateTimePicker);
             menuPnl.Location = new Point(-2, 142);
             menuPnl.Name = "menuPnl";
-            menuPnl.Size = new Size(199, 548);
+            menuPnl.Size = new Size(247, 548);
             menuPnl.TabIndex = 29;
-            // 
-            // Calendar
-            // 
-            Calendar.Location = new Point(230, 481);
-            Calendar.Name = "Calendar";
-            Calendar.TabIndex = 31;
             // 
             // staticLblTitleDate
             // 
+            staticLblTitleDate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             staticLblTitleDate.AutoSize = true;
             staticLblTitleDate.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            staticLblTitleDate.Location = new Point(280, 418);
+            staticLblTitleDate.Location = new Point(40, 317);
             staticLblTitleDate.Name = "staticLblTitleDate";
-            staticLblTitleDate.Size = new Size(125, 22);
+            staticLblTitleDate.Size = new Size(164, 22);
             staticLblTitleDate.TabIndex = 32;
-            staticLblTitleDate.Text = "Date Control";
+            staticLblTitleDate.Text = "Controle de Data";
+            // 
+            // Calendar
+            // 
+            Calendar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            Calendar.Location = new Point(9, 377);
+            Calendar.Name = "Calendar";
+            Calendar.TabIndex = 31;
+            // 
+            // DateTimePicker
+            // 
+            DateTimePicker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            DateTimePicker.Location = new Point(9, 342);
+            DateTimePicker.Name = "DateTimePicker";
+            DateTimePicker.Size = new Size(227, 23);
+            DateTimePicker.TabIndex = 42;
             // 
             // staticLblGenerateTicktTile
             // 
@@ -451,7 +465,7 @@
             // 
             staticLblSymbolHourIn.AutoSize = true;
             staticLblSymbolHourIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblSymbolHourIn.Location = new Point(314, 221);
+            staticLblSymbolHourIn.Location = new Point(378, 238);
             staticLblSymbolHourIn.Name = "staticLblSymbolHourIn";
             staticLblSymbolHourIn.Size = new Size(10, 15);
             staticLblSymbolHourIn.TabIndex = 40;
@@ -461,23 +475,16 @@
             // 
             staticLblSymbolHourOut.AutoSize = true;
             staticLblSymbolHourOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            staticLblSymbolHourOut.Location = new Point(543, 221);
+            staticLblSymbolHourOut.Location = new Point(607, 238);
             staticLblSymbolHourOut.Name = "staticLblSymbolHourOut";
             staticLblSymbolHourOut.Size = new Size(10, 15);
             staticLblSymbolHourOut.TabIndex = 41;
             staticLblSymbolHourOut.Text = ":";
             // 
-            // DateTimePicker
-            // 
-            DateTimePicker.Location = new Point(228, 446);
-            DateTimePicker.Name = "DateTimePicker";
-            DateTimePicker.Size = new Size(227, 23);
-            DateTimePicker.TabIndex = 42;
-            // 
             // addsMainInfo
             // 
             addsMainInfo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            addsMainInfo.Location = new Point(245, 311);
+            addsMainInfo.Location = new Point(309, 328);
             addsMainInfo.Name = "addsMainInfo";
             addsMainInfo.Size = new Size(147, 31);
             addsMainInfo.TabIndex = 43;
@@ -488,7 +495,7 @@
             // calculateHours
             // 
             calculateHours.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            calculateHours.Location = new Point(472, 311);
+            calculateHours.Location = new Point(536, 328);
             calculateHours.Name = "calculateHours";
             calculateHours.Size = new Size(151, 31);
             calculateHours.TabIndex = 44;
@@ -498,12 +505,12 @@
             // 
             // DeleteItemButton
             // 
-            DeleteItemButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteItemButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             DeleteItemButton.Location = new Point(729, 439);
             DeleteItemButton.Name = "DeleteItemButton";
             DeleteItemButton.Size = new Size(579, 38);
             DeleteItemButton.TabIndex = 45;
-            DeleteItemButton.Text = "Deletar Item Selecionado";
+            DeleteItemButton.Text = "Deletar Seleção\r\n";
             DeleteItemButton.UseVisualStyleBackColor = true;
             DeleteItemButton.Click += DeleteItemButton_Click;
             // 
@@ -529,15 +536,12 @@
             Controls.Add(menuPnl);
             Controls.Add(calculateHours);
             Controls.Add(addsMainInfo);
-            Controls.Add(DateTimePicker);
             Controls.Add(staticLblSymbolHourOut);
             Controls.Add(staticLblSymbolHourIn);
             Controls.Add(staticLblSearchPlotTitle);
             Controls.Add(staticLblInsertPlot1);
-            Controls.Add(Calendar);
             Controls.Add(staticLblGenerateTicktTile);
             Controls.Add(txtSearchText);
-            Controls.Add(staticLblTitleDate);
             Controls.Add(search);
             Controls.Add(staticLblInsertPlot2);
             Controls.Add(txtBoxGenerateCupon);
@@ -567,6 +571,7 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             menuPnl.ResumeLayout(false);
+            menuPnl.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
