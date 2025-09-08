@@ -88,7 +88,7 @@ namespace Projeto_Estacionamento
 
         private void DeleteItemButton_Click(object sender, EventArgs e)
         {
-            //DELETE BUTTON (function)
+            ControlsOperations.DeleteSelectedItenFromDatagrid(dataGridView1);
         }
 
         private void SerachButton_Click(object sender, EventArgs e)

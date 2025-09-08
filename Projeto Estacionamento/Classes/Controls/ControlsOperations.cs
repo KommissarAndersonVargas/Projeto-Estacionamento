@@ -1,4 +1,5 @@
 ﻿using Projeto_Estacionamento.Factory;
+using System.Windows.Forms;
 
 namespace Projeto_Estacionamento.Classes.Controls
 {
@@ -76,7 +77,7 @@ namespace Projeto_Estacionamento.Classes.Controls
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.UnExcpectedError, 
+                MessageBox.Show(Properties.Resources.UnExcpectedError,
                     Properties.Resources.MessageBoxError,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -101,7 +102,7 @@ namespace Projeto_Estacionamento.Classes.Controls
 
                 if (string.IsNullOrWhiteSpace(searchText))
                 {
-                    MessageBox.Show(Properties.Resources.SearchForaPlot, 
+                    MessageBox.Show(Properties.Resources.SearchForaPlot,
                         Properties.Resources.MessageBoxWarning,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -130,18 +131,40 @@ namespace Projeto_Estacionamento.Classes.Controls
 
                 if (!found)
                 {
-                    MessageBox.Show(Properties.Resources.PlotNotFound, 
-                        Properties.Resources.MessageBoxInfo, 
-                        MessageBoxButtons.OK, 
+                    MessageBox.Show(Properties.Resources.PlotNotFound,
+                        Properties.Resources.MessageBoxInfo,
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show(Properties.Resources.ErrorDuringSearch,
-                    Properties.Resources.MessageBoxError, 
+                    Properties.Resources.MessageBoxError,
                     MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
+        }
+
+        public static void DeleteSelectedItenFromDatagrid(DataGridView dataGridView1)
+        {
+
+            if (dataGridView1.CurrentRow != null)
+            {
+                var itemSelecionado = dataGridView1.CurrentRow.DataBoundItem as Infocar;
+
+                if (itemSelecionado != null)
+                {
+                    Infocar.infocarsList.Remove(itemSelecionado);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.SelectAnItenForDelete,
+                  Properties.Resources.MessageBoxInfo,
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Information);
+            }
+
         }
 
         public static void NewProject(DataGridView dataGridView1)
@@ -165,7 +188,7 @@ namespace Projeto_Estacionamento.Classes.Controls
             {
                 dataGridView1.Rows.Clear();
 
-                MessageBox.Show(Properties.Resources.DataGridClear, 
+                MessageBox.Show(Properties.Resources.DataGridClear,
                                 Properties.Resources.MessageBoxInfo,
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

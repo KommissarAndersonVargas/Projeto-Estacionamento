@@ -175,6 +175,9 @@
   <data name="SearchForaPlot" xml:space="preserve">
     <value>Digite uma placa para pesquisar</value>
   </data>
+  <data name="SelectAnItenForDelete" xml:space="preserve">
+    <value>Selecione um item para deletar</value>
+  </data>
   <data name="UnExcpectedError" xml:space="preserve">
     <value>Erro inesperado</value>
   </data>

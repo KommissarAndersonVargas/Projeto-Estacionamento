@@ -284,6 +284,15 @@ namespace Projeto_Estacionamento.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Selecione um item para deletar.
+        /// </summary>
+        internal static string SelectAnItenForDelete {
+            get {
+                return ResourceManager.GetString("SelectAnItenForDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Erro inesperado.
         /// </summary>
         internal static string UnExcpectedError {
